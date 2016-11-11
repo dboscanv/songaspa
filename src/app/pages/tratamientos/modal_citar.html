@@ -1,0 +1,56 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Citar un trabajo</h4>
+    </div>
+    <div class="modal-body">
+        <form name="citaForm" class="form-inline" novalidate>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="empleado">Seleccione el empleado a realizar el trabajo</label>
+                    <select class="form-control" id="empleado"
+                            name="empleado"
+                            ng-model="newCita.empleado"
+                            ng-options="empleado._id as empleado.nombre + ' ' + empleado.apellido for empleado in empleados"
+                            required>
+                    </select>
+                    <div ng-messages="citaForm.empleado.$error" class="mensajes"
+                         ng-show="citaForm.empleado.$touched">
+                        <div ng-message="required">Este campo es requerido</div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="trabajo">Seleccione el trabajo</label>
+                    <select class="form-control" id="trabajo"
+                            name="trabajo"
+                            ng-model="newCita.trabajo"
+                            ng-options="trabajo._id as trabajo.nombre_trabajo for trabajo in trabajos" required>
+                    </select>
+                    <div ng-messages="citaForm.trabajo.$error" class="mensajes"
+                         ng-show="citaForm.trabajo.$touched">
+                        <div ng-message="required">Este campo es requerido</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="fecha">Seleccione fecha a realizar</label>
+                    <p class="input-group">
+                        <input type="text" class="form-control" datetime-picker timepicker-options="timeOptions" when-closed="onSetTime()" ng-model="fecha.fecha"
+                               is-open="popup.opened" datepicker-options="dateOptions" ng-required="true"/>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                         </span>
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-disabled="citaForm.$invalid" ng-click="citar(this)">
+            Crear
+        </button>
+    </div>
+</div>

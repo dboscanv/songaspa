@@ -1,0 +1,125 @@
+<div class="row">
+    <div class="col-md-12">
+        <div ba-panel>
+            <form name="tratamientoForm" novalidate>
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="CI">Cédula de identidad</label>
+                        <input type="number" class="form-control has-error" name="CI" id="CI"
+                               placeholder="Introduzca la cédula de identidad del cliente" ng-model="CI_CLIENTE.CI"
+                               ng-minlength="6" ng-maxlength="50" ng-disabled="cliente" required>
+                        <div ng-messages="tratamientoForm.CI.$error" class="mensajes"
+                             ng-show="tratamientoForm.CI.$touched">
+                            <div ng-message="required">Este campo es requerido</div>
+                            <div ng-message="minlength">El número de cédula es invalido</div>
+                        </div>
+                        <p>{{cliente.nombre | uppercase}} {{cliente.apellido | uppercase}}</p>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-success pull-right" ng-disabled="tratamientoForm.CI.$invalid"
+                        ng-show="!step2" ng-click="buscarCliente()">Siguiente
+                </button>
+
+                <div class="row" ng-if="step2">
+                    <div class="col-md-12">
+                        <div class="text-center tituloHistoria">
+                            <h3>DATOS DEL TRATAMIENTO</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-if="step2">
+                    <div class="form-group col-md-6">
+                        <label for="nombre_tratamiento">Nombre del tratamiento</label>
+                        <input type="text" class="form-control has-error" name="nombre_tratamiento"
+                               id="nombre_tratamiento"
+                               placeholder="Nombre del tratamiento" ng-model="newTratamiento.nombre_tratamiento"
+                               ng-minlength="4" ng-maxlength="50" ng-pattern="/^([A-Za-zÑñáéíóúÁÉÍÓÚ ]+)$/" required>
+                        <div ng-messages="tratamientoForm.nombre_tratamiento.$error" class="mensajes"
+                             ng-show="tratamientoForm.nombre_tratamiento.$touched">
+                            <div ng-message="required">Este campo es requerido</div>
+                            <div ng-message="minlength">El nombre del tratamiento es muy corto</div>
+                            <div ng-message="maxlength">El nombre del tratamiento es muy largo</div>
+                            <div ng-message="pattern">Sólo se permiten letras</div>
+                        </div>
+                    </div>
+                    <!--<div class="form-group col-md-6" ng-init="touchedFechaIni = false">-->
+                    <!--<label for="dropdown2">Fecha de inicio</label>-->
+                    <!--<div class="dropdown">-->
+                    <!--<a class="dropdown-toggle" ng-click="touchedFechaIni = true" id="dropdown2" role="button" data-toggle="dropdown" data-target="#">-->
+                    <!--<div class="input-group"><input type="text"  class="form-control" data-ng-model="newTratamiento.fecha_inicio"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>-->
+                    <!--</div>-->
+                    <!--<div ng-show="touchedFechaIni">-->
+                    <!--<div ng-show="fechainvalida && banderafecha">¡La fecha es invalida (no puedes apartar cita ni antes de hoy ni en fechas posteriores exageradas) !</div>-->
+                    <!--</div>-->
+                    <!--</a>-->
+                    <!--<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">-->
+                    <!--<datetimepicker name="fecha_inicio" data-ng-model="newTratamiento.fecha_inicio" data-datetimepicker-config="{ dropdownSelector: '#dropdown2', minuteStep:30 }" data-on-set-time="onSetTime(newDate)"/>-->
+                    <!--</ul>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash;<input type="date" class="form-control" name="fecha_inicio" id="exampleInputEmail2"&ndash;&gt;-->
+                    <!--&lt;!&ndash;placeholder="Precio" ng-model="newTratamiento.fecha_inicio" required>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div ng-messages="tratamientoForm.fecha_inicio.$error"&ndash;&gt;-->
+                    <!--&lt;!&ndash;ng-show="tratamientoForm.fecha_inicio.$touched">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div ng-message="required">Este campo es requerido</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--</div>-->
+                    <div class="form-group col-md-6">
+                        <label for="">Fecha de inicio</label>
+                        <p class="input-group">
+                            <input type="text" class="form-control" datetime-picker timepicker-options="timeOptions" when-closed="onSetTime()" ng-model="fecha.fecha_inicio"
+                                   is-open="popup.opened" datepicker-options="dateOptions" ng-required="true"
+                                   close-text="Cerrar" current-text="Hoy" clear-text="Reiniciar" disabled/>
+                            <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                         </span>
+                        </p>
+                    </div>
+                    <button type="button" class="btn btn-success pull-right"
+                            ng-disabled="tratamientoForm.nombre_tratamiento.$invalid || fechainvalida"
+                            ng-click="siguiente()" ng-show="!step3">Siguiente
+                    </button>
+                </div>
+
+                <div class="row" ng-if="step3">
+                    <div class="col-md-12">
+                        <div class="text-center tituloHistoria">
+                            <h3>DETALLES</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-if="step3">
+                    <div class="form-group col-md-6">
+                        <label for="seleccionar_trabajo">Seleccione un trabajo</label>
+                        <select name="trabajo" id="seleccionar_trabajo" class="form-control"
+                                ng-options="t._id as t.nombre_trabajo for t in trabajos"
+                                ng-model="newTratamiento.trabajo" required></select>
+                        <div ng-messages="tratamientoForm.trabajo.$error" class="mensajes"
+                             ng-show="tratamientoForm.trabajo.$touched">
+                            <div ng-message="required">Este campo es requerido</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="seleccionar_empleado">Empleado</label>
+                        <select name="empleado" id="seleccionar_empleado" class="form-control"
+                                ng-options="e._id as e.nombre + ' ' + e.apellido for e in empleados"
+                                ng-model="newTratamiento.empleado" required></select>
+                        <div ng-messages="tratamientoForm.empleado.$error" class="mensajes"
+                             ng-show="tratamientoForm.empleado.$touched">
+                            <div ng-message="required">Este campo es requerido</div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-success pull-right"
+                        ng-disabled="tratamientoForm.empleado.$invalid || tratamientoForm.trabajo.$invalid"
+                        ng-click="finalizar()" ng-show="step3">Iniciar tratamiento
+                </button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+

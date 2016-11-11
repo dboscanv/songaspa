@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-md-12">
+        <div ba-panel>
+            <div class="row">
+                <div class="col-md-6">
+                    <form name="ciForm" novalidate>
+                        <input type="text" class="form-control" placeholder="Introduzca número de cédula"
+                               ng-model="CI.CI" ng-minlength="6" name="cedula" ng-maxlength="8"
+                               ng-pattern="/^[0-9]+$/" required id="cedula">
+                        <div ng-messages="ciForm.cedula.$error"
+                             ng-show="ciForm.cedula.$touched">
+                            <div ng-message="required">Este campo es requerido</div>
+                            <div ng-message="pattern">Sólo se permiten números</div>
+                            <div ng-message="minlength">La cédula es muy corta</div>
+                            <div ng-message="maxlength">La cédula es muy larga</div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-6">
+                    <button class="btn btn-primary" ng-click="buscar()" ng-disabled="ciForm.$invalid">Buscar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-if="tratamientos">
+
+        <div class="col-md-3" ng-repeat="tratamiento in tratamientos">
+            <a href="#/tratamiento_detalles/{{tratamiento.tratamientos._id}}/{{CI.CI}}">
+                <div ba-panel>
+                    <h5>{{tratamiento.tratamientos.nombre_tratamiento}}</h5>
+                    <p><i class="icon ion-clock" style="color:red"></i> <strong>Fecha de inicio:</strong>
+                        {{tratamiento.tratamientos.fecha_inicio | date: "yyyy/MM/dd hh:mm a"}}</p>
+                    <!--<p><i class="icon ion-social-usd" style="color:green"></i> <strong>Solvencia:</strong>-->
+                    <!--{{(tratamiento.solvencia) ? "SI" : "NO"}}-->
+                    <!--</p>-->
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>

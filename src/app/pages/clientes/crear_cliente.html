@@ -1,0 +1,638 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-class="with-scroll">
+                <ba-wizard>
+                    <ba-wizard-step title="INFORMACIÓN PERSONAL" form="vm.InfoForm">
+                        <form name="vm.InfoForm" novalidate>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback"
+                                         ng-class="{'has-error': vm.InfoForm.cedula.$invalid && (vm.InfoForm.cedula.$dirty || vm.InfoForm.$submitted)}">
+                                        <label for="cedula">Cédula de identidad</label>
+                                        <input type="text" class="form-control" id="cedula" name="cedula"
+                                               placeholder="Cédula" ng-model="cliente._id" ng-pattern="/^[0-9]+$/" ng-minlength="6" ng-maxlength="8" required>
+                                        <div ng-messages="vm.InfoForm.cedula.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.cedula.$touched">
+                                            <div ng-message="required">Este campo es requerido</div>
+                                            <div ng-message="pattern">Sólo se permiten números</div>
+                                            <div ng-message="minlength">La cédula es muy corta</div>
+                                            <div ng-message="maxlength">La cédula es muy larga</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback"
+                                         ng-class="{'has-error': vm.InfoForm.Nombre.$invalid && (vm.InfoForm.Nombre.$dirty || vm.InfoForm.$submitted)}">
+                                        <label for="nombre">Nombre</label>
+                                        <input type="text" class="form-control" id="Nombre" name="Nombre"
+                                               placeholder="Nombre" ng-model="cliente.nombre" ng-maxlength="40" ng-minlength="4" ng-pattern="/^([A-Za-zÑñáéíóúÁÉÍÓÚ ]+)$/" required>
+                                        <div ng-messages="vm.InfoForm.Nombre.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.Nombre.$touched">
+                                            <div ng-message="required">Este campo es requerido</div>
+                                            <div ng-message="pattern">Sólo se permiten letras</div>
+                                            <div ng-message="minlength">El nombre es muy corto</div>
+                                            <div ng-message="maxlength">El nombre es muy largo</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback"
+                                         ng-class="{'has-error': vm.InfoForm.apellido.$invalid && (vm.InfoForm.apellido.$dirty || vm.InfoForm.$submitted)}">
+                                        <label for="apellido">Apellido</label>
+                                        <input type="text" class="form-control" id="apellido" name="apellido"
+                                               placeholder="Apellido" ng-model="cliente.apellido" ng-maxlength="40" ng-minlength="4" ng-pattern="/^([A-Za-zÑñáéíóúÁÉÍÓÚ ]+)$/" required>
+                                        <div ng-messages="vm.InfoForm.apellido.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.apellido.$touched">
+                                            <div ng-message="required">Este campo es requerido</div>
+                                            <div ng-message="pattern">Sólo se permiten letras</div>
+                                            <div ng-message="minlength">El apellido es muy corto</div>
+                                            <div ng-message="maxlength">El apellido es muy largo</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback"
+                                         ng-class="{'has-error': vm.InfoForm.fechanac.$invalid && (vm.InfoForm.fechanac.$dirty || vm.InfoForm.$submitted)}">
+                                        <label for="fechanac">Fecha de nacimiento</label>
+                                        <input type="date" class="form-control" id="fechanac" name="fechanac"
+                                               placeholder="Fecha de nacimiento" ng-model="cliente.fechanac" min="1940-01-01" max="2006-12-31" required>
+                                        <div ng-messages="vm.InfoForm.fechanac.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.fechanac.$touched">
+                                            <div ng-message="required">Este campo es requerido</div>
+                                            <div ng-message="max">La fecha es muy reciente</div>
+                                            <div ng-message="min">La fecha es muy antigua</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback"
+                                         ng-class="{'has-error': vm.InfoForm.estado_civil.$invalid && (vm.InfoForm.estado_civil.$dirty || vm.InfoForm.$submitted)}">
+                                        <label for="estado_civil">Estado Civil</label>
+                                        <select class="form-control" name="estado_civil" id="estado_civil"
+                                                ng-model="cliente.estado_civil" required>
+                                            <option value="Soltera" ng-selected="true">Soltera(o)</option>
+                                            <option value="Casada">Casada(o)</option>
+                                            <option value="Viuda">Viuda(o)</option>
+                                        </select>
+                                        <span class="help-block error-block basic-block">Este campo es requerido</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group has-feedback"
+                                         ng-class="{'has-error': vm.InfoForm.sexo.$invalid && (vm.InfoForm.sexo.$dirty || vm.InfoForm.$submitted)}">
+                                        <label for="sexo">Genero</label>
+                                        <select class="form-control" name="sexo" id="sexo"
+                                                ng-model="cliente.sexo" required>
+                                            <option value="M">Masculino</option>
+                                            <option value="F" ng-selected="true">Femenino</option>
+                                        </select>
+                                        <span class="help-block error-block basic-block">Este campo es requerido</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback"
+                                         ng-class="{'has-error': vm.InfoForm.ocupacion.$invalid && (vm.InfoForm.ocupacion.$dirty || vm.InfoForm.$submitted)}">
+                                        <label for="ocupacion">Ocupación</label>
+                                        <input type="text" class="form-control" id="ocupacion" name="ocupacion"
+                                               placeholder="Ocupación" ng-model="cliente.ocupacion" required>
+                                        <span class="help-block error-block basic-block">Requerido</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback"
+                                         ng-class="{'has-error': vm.InfoForm.telefono.$invalid && (vm.InfoForm.telefono.$dirty || vm.InfoForm.$submitted)}">
+                                        <label for="Telefono">Telefono (Hab)</label>
+                                        <input type="text" class="form-control" id="Telefono" name="telefono"
+                                               placeholder="Telefono" ng-model="cliente.telefono" ng-pattern="/^[0-9]+$/" ng-maxlength="30" ng-minlength="11" required>
+                                        <div ng-messages="vm.InfoForm.telefono.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.telefono.$touched">
+                                            <div ng-message="required">Este campo es requerido</div>
+                                            <div ng-message="pattern">Sólo se permiten números</div>
+                                            <div ng-message="minlength">El número es muy corto</div>
+                                            <div ng-message="maxlength">El número es muy largo</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback"
+                                         ng-class="{'has-error': vm.InfoForm.oficina.$invalid && (vm.InfoForm.oficina.$dirty || vm.InfoForm.$submitted)}">
+                                        <label for="Oficina">Oficina</label>
+                                        <input type="text" class="form-control" id="Oficina" name="oficina"
+                                               placeholder="Oficina" ng-model="cliente.oficina" ng-pattern="/^[0-9]+$/" ng-maxlength="30" ng-minlength="11"  required>
+                                        <div ng-messages="vm.InfoForm.oficina.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.oficina.$touched">
+                                            <div ng-message="required">Este campo es requerido</div>
+                                            <div ng-message="pattern">Sólo se permiten números</div>
+                                            <div ng-message="minlength">El número es muy corto</div>
+                                            <div ng-message="maxlength">El número es muy largo</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback"
+                                         ng-class="{'has-error': vm.InfoForm.celular.$invalid && (vm.InfoForm.celular.$dirty || vm.InfoForm.$submitted)}">
+                                        <label for="Celular">Celular</label>
+                                        <input type="text" class="form-control" id="Celular" name="celular"
+                                               placeholder="Celular" ng-model="cliente.celular" ng-pattern="/^[0-9]+$/" ng-maxlength="30" ng-minlength="11" required>
+                                        <div ng-messages="vm.InfoForm.celular.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.celular.$touched">
+                                            <div ng-message="required">Este campo es requerido</div>
+                                            <div ng-message="pattern">Sólo se permiten números</div>
+                                            <div ng-message="minlength">El número es muy corto</div>
+                                            <div ng-message="maxlength">El número es muy largo</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback"
+                                         ng-class="{'has-error': vm.InfoForm.email.$invalid && (vm.InfoForm.email.$dirty || vm.InfoForm.$submitted)}">
+                                        <label for="email">E-mail</label>
+                                        <input type="email" class="form-control" id="email" name="email"
+                                               placeholder="E-mail" ng-model="cliente.email" ng-pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/" required>
+                                        <div ng-messages="vm.InfoForm.email.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.email.$touched">
+                                            <div ng-message="required">Este campo es requerido</div>
+                                            <div ng-message="pattern">El e-mail es invalido</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group has-feedback"
+                                         ng-class="{'has-error': vm.InfoForm.direccion.$invalid && (vm.InfoForm.direccion.$dirty || vm.InfoForm.$submitted)}">
+                                        <label for="direccion">Dirección</label>
+                                        <textarea class="form-control" rows="5" id="direccion" name="direccion"
+                                                  ng-model="cliente.direccion" ng-maxlength="150" ng-minlength="5" required></textarea>
+                                        <div ng-messages="vm.InfoForm.direccion.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.direccion.$touched">
+                                            <div ng-message="required">Este campo es requerido</div>
+                                            <div ng-message="maxlength">La dirección es muy larga</div>
+                                            <div ng-message="minlength">La dirección es muy corta</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </ba-wizard-step>
+                    <ba-wizard-step title="EVALUACIÓN ESTÉTICA" form="vm.evaluacionForm">
+                        <form name="vm.evaluacionForm" novalidate>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="hipertersion_arterial"
+                                               ng-model="cliente.evaluacion_clinica.hipertersion_arterial">
+                                        <span>Hipertensión Arterial</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="hipotension"
+                                               ng-model="cliente.evaluacion_clinica.hipotension">
+                                        <span>Hipotensión</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="diabetes"
+                                               ng-model="cliente.evaluacion_clinica.diabetes">
+                                        <span>Diabetes</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="renal"
+                                               ng-model="cliente.evaluacion_clinica.renal">
+                                        <span>Renal</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="cardiopatio"
+                                               ng-model="cliente.evaluacion_clinica.cardiopatio">
+                                        <span>Cardiopatio</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="circulacion"
+                                               ng-model="cliente.evaluacion_clinica.circulacion">
+                                        <span>Circulación</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="anticon_oral"
+                                               ng-model="cliente.evaluacion_clinica.anticon_oral">
+                                        <span>Anticonceptivo Oral</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="tras_mens"
+                                               ng-model="cliente.evaluacion_clinica.tras_mens">
+                                        <span>Trastorno Menstrual</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="f_u_r"
+                                               ng-model="cliente.evaluacion_clinica.f_u_r">
+                                        <span>F_U_R</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="d_i_u"
+                                               ng-model="cliente.evaluacion_clinica.d_i_u">
+                                        <span>D_I_U</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="tiroides"
+                                               ng-model="cliente.evaluacion_clinica.tiroides">
+                                        <span>Tiroides</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="epilepsia"
+                                               ng-model="cliente.evaluacion_clinica.epilepsia">
+                                        <span>Epilepsia</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="lupus"
+                                               ng-model="cliente.evaluacion_clinica.lupus">
+                                        <span>Lupus</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="problemas_digestivos"
+                                               ng-model="cliente.evaluacion_clinica.problemas_digestivos">
+                                        <span>Problemas Digestivos</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="estrenimiento"
+                                               ng-model="cliente.evaluacion_clinica.estrenimiento">
+                                        <span>Estreñimiento</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="hepatitis"
+                                               ng-model="cliente.evaluacion_clinica.hepatitis">
+                                        <span>Hepatitis</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="cancer"
+                                               ng-model="cliente.evaluacion_clinica.cancer">
+                                        <span>Cancer</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="prob_urinarios"
+                                               ng-model="cliente.evaluacion_clinica.prob_urinarios">
+                                        <span>Problemas Urinarios</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="rete_liquidos"
+                                               ng-model="cliente.evaluacion_clinica.rete_liquidos">
+                                        <span>Retencion de Líquido</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="prob_respiratorios"
+                                               ng-model="cliente.evaluacion_clinica.prob_respiratorios">
+                                        <span>Problemas Respiratorios</span>
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="asma"
+                                               ng-model="cliente.evaluacion_clinica.asma">
+                                        <span>Asma</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="alergias"
+                                               ng-model="cliente.evaluacion_clinica.alergias">
+                                        <span>Alergias</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="antecedentes_dermat"
+                                               ng-model="cliente.evaluacion_clinica.antecedentes_dermat">
+                                        <span>Antecedentes Dermatologicos</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="" value="option2" name="herpes"
+                                               ng-model="cliente.evaluacion_clinica.herpes">
+                                        <span>Herpes</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row margin-filas">
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        <div class="form-group has-feedback">
+                                            <label for="medicamentos">Medicamentos</label>
+                                        <textarea class="form-control" rows="3" id="medicamentos" name="medicamentos"
+                                                  ng-model="cliente.evaluacion_estetica.medicamentos" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- OPERACIONES -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="text-center tituloHistoria">
+                                        <h3>OPERACIONES</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label for="cirugias">¿Que cirugias se ha realizado?</label>
+                                        <input type="text" class="form-control" id="cirugias" name="cirugias"
+                                               placeholder="cirugias" ng-model="cliente.evaluacion_clinica.cirugias" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label for="complicaciones">Complicaciones de la cirugía</label>
+                                        <input type="text" class="form-control" id="complicaciones"
+                                               name="complicaciones"
+                                               placeholder="cirugias" ng-model="cliente.evaluacion_clinica.complicaciones" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row margin-filas">
+                                <div class="col-md-12 text-center">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="recibido_anestesia" value="option2"
+                                               name="recibido_anestesia"
+                                               ng-model="cliente.evaluacion_clinica.recibido_anestesia">
+                                        <span>¿Has recibido anestesia?</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- IMPLANTES -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="text-center tituloHistoria">
+                                        <h3>IMPLANTES</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" id="recibido_implantes" value="option2"
+                                               name="recibido_implantes"
+                                               ng-model="cliente.evaluacion_clinica.implantes.recibido_implantes">
+                                        <span>¿Se ha realizado implantes?</span>
+                                    </label>
+                                </div>
+                                <div ng-if="cliente.evaluacion_clinica.implantes.recibido_implantes"
+                                     class="margin-filas">
+                                    <div class="col-md-6">
+                                        <div class="form-group has-feedback">
+                                            <label for="tiempo">Tiempo</label>
+                                            <input type="text" class="form-control" id="tiempo" name="tiempo"
+                                                   placeholder="Tiempo"
+                                                   ng-model="cliente.evaluacion_clinica.implantes.tiempo" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group has-feedback">
+                                                <label for="tiempo">Área</label>
+                                                <input type="text" class="form-control" id="area" name="area"
+                                                       placeholder="Area"
+                                                       ng-model="cliente.evaluacion_clinica.implantes.area" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group has-feedback">
+                                                <label for="tipo">Tipo de implante</label>
+                                                <input type="text" class="form-control" id="tipo" name="tipo"
+                                                       placeholder="Tiempo"
+                                                       ng-model="cliente.evaluacion_clinica.implantes.tipo" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Evaluacion clinica estetica -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="text-center tituloHistoria">
+                                        <h3>PEELING</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" value="option2" name="realizado_antes"
+                                               ng-model="cliente.evaluacion_clinica.peeling.realizado_antes">
+                                        <span>¿Se ha realizado peeling?</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row margin-filas" ng-if="cliente.evaluacion_clinica.peeling.realizado_antes">
+                                <div class="col-md-12">
+                                    <div class="form-group has-feedback">
+                                        <label for="cuando">Cuando</label>
+                                        <input type="text" class="form-control" id="cuando" name="cuando"
+                                               placeholder="Tiempo" ng-model="cliente.evaluacion_clinica.peeling.cuando"
+                                               required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Evaluacion clinica estetica -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="text-center tituloHistoria">
+                                        <h3>OTROS</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" value="option2" name="lentes_contacto"
+                                               ng-model="cliente.evaluacion_clinica.lentes_contacto">
+                                        <span>Lentes de Contacto</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" value="option2" name="fuma"
+                                               ng-model="cliente.evaluacion_clinica.fuma">
+                                        <span>¿Fuma?</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                        <input type="checkbox" value="option2" name="toma"
+                                               ng-model="cliente.evaluacion_clinica.toma">
+                                        <span>¿Toma?</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row margin-filas">
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label for="otros_aparatos">¿Que otros aparatos utiliza?</label>
+                                        <input type="text" class="form-control" id="otros_aparatos"
+                                               name="otros_aparatos"
+                                               placeholder="otros aparatos"
+                                               ng-model="cliente.evaluacion_clinica.otros_aparatos" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label for="productos_utilizados">Productos utilizados actualmente</label>
+                                        <input type="text" class="form-control" id="productos_utilizados"
+                                               name="productos_utilizados"
+                                               placeholder="Productos"
+                                               ng-model="cliente.evaluacion_clinica.productos_utilizados" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group has-feedback">
+                                        <label for="medicamentos_actual">Medicamento(s) Actualies</label>
+                                        <input type="text" class="form-control" id="medicamentos_actual"
+                                               name="medicamentos_actual"
+                                               placeholder="Medicamentos actuales"
+                                               ng-model="cliente.evaluacion_clinica.medicamentos_actual" required>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </ba-wizard-step>
+                    <ba-wizard-step title="MOTIVO DE CONSULTA" form="vm.motivoconsultaForm">
+                        <form name="vm.motivoconsultaForm" novalidate>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group has-feedback">
+                                        <label for="tipo_piel">Tipo de piel</label>
+                                        <input type="text" class="form-control" id="tipo_piel"
+                                               name="tipo_piel"
+                                               placeholder="Tipo de piel"
+                                               ng-model="cliente.motivo_consulta.tipo_piel" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group has-feedback">
+                                        <label for="fototipo_piel">Fototipo de piel</label>
+                                        <input type="text" class="form-control" id="fototipo_piel" name="fototipo_piel"
+                                               placeholder="FotoTipo de piel"
+                                               ng-model="cliente.motivo_consulta.fototipo_piel"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group has-feedback">
+                                        <label for="talqangestasia">Talangestasia</label>
+                                        <input type="text" class="form-control" id="talqangestasia"
+                                               name="talqangestasia"
+                                               placeholder="Talangestasia"
+                                               ng-model="cliente.motivo_consulta.talqangestasia"
+                                               required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group has-feedback">
+                                        <label for="manchas">Manchas</label>
+                                        <input type="text" class="form-control" id="manchas" name="manchas"
+                                               placeholder="manchas"
+                                               ng-model="cliente.motivo_consulta.manchas" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group has-feedback">
+                                        <label for="arrugas">Arrugas</label>
+                                        <input type="text" class="form-control" id="arrugas" name="arrugas"
+                                               placeholder="Arrugas"
+                                               ng-model="cliente.motivo_consulta.arrugas" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group has-feedback">
+                                        <label for="arrugas_profundas">Arrugas Profundas</label>
+                                        <input type="text" class="form-control" id="arrugas_profundas"
+                                               name="arrugas_profundas"
+                                               placeholder="arrugas_profundas"
+                                               ng-model="cliente.motivo_consulta.arrugas_profundas"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group has-feedback">
+                                        <label for="dx">Dx</label>
+                                        <input type="text" class="form-control" id="dx" name="dx"
+                                               placeholder="dx" ng-model="cliente.motivo_consulta.dx"
+                                               required>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </ba-wizard-step>
+                    <ba-wizard-step title="GUARDAR">
+                        <div class="text-center">
+                            <h4>¿Esta seguro que desea guardar este cliente?</h4>
+                            <small>Verifique los datos antes de hacer click en el boton guardar</small>
+                            <button class="btn btn-success" ng-click="guardarCliente()">Guardar Cliente</button>
+                        </div>
+                    </ba-wizard-step>
+                </ba-wizard>
+            </div>
+        </div>
+    </div>
+
+</div>

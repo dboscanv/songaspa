@@ -1,0 +1,28 @@
+form[name="editableForm"] .title {
+  display: inline-block;
+  font-weight: bold;
+  padding-top: 5px;
+  vertical-align: top;
+  min-width: 90px;
+}
+
+.title {
+  //font-family: courier, monospace;
+  font-size: 14px !important;
+  font-weight: bold !important;
+}
+
+.editarCampo {
+  display: table;
+  font-size: 1.2em !important;
+
+}
+
+.editable-text {
+  width:100% !important;
+}
+
+.editable-email {
+  width:100% !important;
+
+}

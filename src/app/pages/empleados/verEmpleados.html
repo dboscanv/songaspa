@@ -1,0 +1,53 @@
+<div class="row" style="margin-bottom: 0.2%">
+    <div class="col-sm-4 col-xs-6 pull-right">
+        <a class="btn btn-primary pull-right btn-with-icon" ng-click="abrirForm()" ng-if="!formEmpleado.$visible"><i class="ion-edit"></i>Editar</a>
+        <div ng-if="formEmpleado.$visible">
+            <button class="btn btn-success pull-right btn-with-icon" ng-click="submitForm()"><i class="ion-android-done"></i>Guardar
+            </button>
+            <button class="btn btn-warning pull-right btn-with-icon" ng-click="formEmpleado.$cancel()"><i class="ion-android-cancel"></i>Cancelar
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+        <div ba-panel>
+            <form editable-form name="$parent.formEmpleado" onaftersave="editarEmpleado()" style="margin-top:5%" novalidate>
+                <div class="form-group">
+                    <label for="nombre" class="title">Nombre:</label>
+                    <span editable-text="empleado.nombre" e-name="nombre" e-style="width: 100%" e-required class="form-control editarCampo" id="nombre"
+                          placeholder="Nombre" ng-bind-html="empleado.nombre" onbeforesave="checkTexto($data,4,40,true)"></span>
+                </div>
+                <div class="form-group">
+                    <label for="apellido" class="title">Apellido:</label>
+                    <span editable-text="empleado.apellido" e-name="apellido" e-required class="form-control"
+                          id="apellido" placeholder="Apellido" ng-bind-html="empleado.apellido" onbeforesave="checkTexto($data,4,40,true)"></span>
+                </div>
+                <div class="form-group">
+                    <label for="cargo" class="title">Cargo:</label>
+                    <span editable-select="empleado.cargo" e-name="cargo" e-required
+                          class="form-control form-control-rounded" e-ng-options="s as s for s in cargos" id="cargo"
+                          placeholder="Cargo">{{empleado.cargo}}</span>
+                </div>
+                <div class="form-group">
+                    <label for="edad" class="title">Edad:</label>
+                    <span class="form-control" id="edad"
+                          placeholder="edad" ng-bind-html="empleado.edad"></span>
+                </div>
+                <div class="form-group">
+                    <label for="correo" class="title">Correo electronico:</label>
+                    <span editable-email="empleado.correo" e-name="correo" e-required class="form-control" id="correo"
+                          placeholder="correo" ng-bind-html="empleado.correo" onbeforesave="checkEmail($data)"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="fechanac" class="title">Fecha de nacimiento</label>
+                    <span editable-date="empleado.fechanac" e-name="correo" e-required class="form-control"
+                          id="fechanac" placeholder="fechanac" ng-bind-html="empleado.fechanac | date:'dd/MM/yyyy'" onbeforesave="checkDate($data, '1940-01-01','1998-12-31')"></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+.section-title {
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 15px;
+  text-align: center; }
+.section-title h1 {
+  font-size: 24px;
+  text-transform: uppercase;
+  color: #2ca5b9; }
+.section-title .divider {
+  position: relative;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 30px;
+  margin-top: 30px; }
+.section-title .divider:before {
+  position: absolute;
+  content: '';
+  width: 30px;
+  height: 30px;
+  border: 1px solid #f0f0f0;
+  left: 50%;
+  margin-left: -15px;
+  top: 50%;
+  background: #fff;
+  margin-top: -15px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg); }
+.section-title .divider:after {
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 1px solid #2ca5b9;
+  left: 50%;
+  margin-left: -10px;
+  top: 50%;
+  background: #2ca5b9;
+  margin-top: -10px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg); }
+
+.margin-filas {
+  margin-top: 1%;
+}
+
+.historia {
+  font-family: courier, monospace;
+  font-size: 1.5em !important;
+  font-weight: bold !important;
+}
+
+.historiaFiled {
+  font-family: courier, monospace;
+  font-size: 1.2em !important;
+  margin-left:2.2% !important;
+  border-bottom: 0.4px dotted black !important;
+  display: table;
+}
+
+.tituloHistoria {
+  border-bottom: 1px solid #BDBDBD;
+  border-top: 1px solid #BDBDBD;
+  padding: 2%;
+  font-family: courier, monospace;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.editable-checklist label {
+  display: block;
+}
+
+.checkboxForm {
+  position: relative;
+  margin: 0 auto;
+}
+
+.textAreaHistoria {
+  display: block;
+  margin-left: auto !important;
+  margin-right: auto;
+}
+
+.btn {
+  margin-bottom:2% !important;
+}

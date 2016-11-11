@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col-sm-4 col-xs-6 pull-right">
+        <a class="btn btn-primary pull-right btn-with-icon boton-margen" ng-click="abrirModal()"><i
+                class="ion-person-add"></i>Crear trabajo</a>
+    </div>
+    <div class="col-sm-4 col-xs-6 pull-left">
+        <a class="btn btn-info pull-left btn-with-icon boton-margen" ng-click="generarReporte()"><i
+                class="ion-printer"></i>Imprimir reporte</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+        <div ba-panel>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-condensed">
+                    <tr>
+                        <td>#</td>
+                        <td>Nombre</td>
+                        <td>Precio</td>
+                        <td>Acciones</td>
+                    </tr>
+                    <tr ng-repeat="trabajo in trabajos" class="editable-row">
+                        <td>
+                            {{$index + 1}}
+                        </td>
+                        <td>
+        <span editable-text="trabajo.nombre_trabajo" e-name="nombre_trabajo" e-form="rowform" e-required>
+          {{ trabajo.nombre_trabajo }}
+        </span>
+                        </td>
+                        <td>
+        <span editable-number="trabajo.precio" e-name="precio" e-form="rowform" e-required>
+          {{ trabajo.precio | currency: "Bs. "}}
+        </span>
+                        </td>
+                        <td>
+                            <form editable-form name="rowform" ng-show="rowform.$visible"
+                                  class="form-buttons form-inline"
+                                  shown="inserted == trabajo" onbeforesave="editarTrabajo(trabajo)">
+                                <button type="submit" ng-disabled="rowform.$waiting" ng-click=""
+                                        class="btn btn-primary editable-table-button btn-xs">
+                                    Guardar
+                                </button>
+                                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()"
+                                        class="btn btn-default editable-table-button btn-xs">
+                                    Cancelar
+                                </button>
+                            </form>
+                            <div class="buttons" ng-show="!rowform.$visible">
+                                <button class="btn btn-primary editable-table-button btn-xs" ng-click="rowform.$show()">
+                                    Editar
+                                </button>
+                                <button class="btn btn-danger editable-table-button btn-xs"
+                                        ng-click="eliminarTrabajo(trabajo._id)">
+                                    Eliminar
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

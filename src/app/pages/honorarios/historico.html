@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-sm-4 col-xs-6 pull-left">
+        <a class="btn btn-info pull-left btn-with-icon boton-margen" ng-if="empleadoSelec.CI"
+           ng-click="generarReporte()"><i
+                class="ion-printer"></i>Imprimir reporte</a>
+    </div>
+    <div class="col-sm-4 col-xs-6 pull-left">
+        <div class="form-group">
+            <label for="empleado">Seleccione un empleado</label>
+            <select class="form-control" id="empleado"
+                    name="empleado"
+                    id="empleado"
+                    ng-model="empleadoSelec.CI"
+                    ng-options="empleado._id as empleado.nombre + ' ' + empleado.apellido for empleado in empleados"
+                    required>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="row row-center" ng-if="historico">
+    <div class="col-md-12 text-center">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="fecha1">Desde</label>
+                <input type="date" ng-model="fechas.uno" class="form-control" id="fecha1" ng-change="validarFecha(1)">
+            </div>
+            <div class="form-group">
+                <label for="Hasta">Hasta</label>
+                <input type="date" ng-model="fechas.dos" class="form-control" id="Hasta" ng-change="validarFecha(2)">
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+        <div ba-panel>
+            <div ng-if="historico" class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr class="black-muted-bg">
+                        <td>Fecha</td>
+                        <td>Empleado</td>
+                        <td>Tratamientos</td>
+                        <td>IVA</td>
+                        <td>Estética</td>
+                        <td>Total pagado</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="hist in hArray.historicoFiltrado = (historico | filter:empleadoSelec.CI | fechasFiltro:fechas.uno:fechas.dos:'fecha_pago') ">
+                        <td>{{hist.fecha_pago | date:"dd/MM/yyyy hh:mm a"}}</td>
+                        <td>{{hist.idempleado.nombre + " " + hist.idempleado.apellido}}</td>
+                        <td>{{hist.total_tratamientos | currency: "Bs. "}}</td>
+                        <td>{{hist.iva | currency: "Bs. "}}</td>
+                        <td>{{hist.total_porcentaje | currency: "Bs. "}}</td>
+                        <td>{{hist.total_pagado | currency: "Bs. "}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

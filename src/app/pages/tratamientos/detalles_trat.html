@@ -1,0 +1,41 @@
+<div class="row" style="margin-bottom: 0.2%">
+    <div class="col-sm-4 col-xs-6 pull-right">
+        <a class="btn btn-danger pull-right btn-with-icon" ng-click="finalizarTratamiento()"><i class="ion-close"></i>Finalizar tratamiento</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div ba-panel>
+            <h2><i class="ion-information-circled" style="font-size:24px; color: #90CAF9; display:inline; padding-right: 1.5%"></i>{{ tratamiento.nombre_tratamiento | uppercase}}</h2>
+            <p><strong>Fecha de inicio:</strong> {{tratamiento.fecha_inicio | date:"yyyy/MM/dd hh:mm a"}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="margin-bottom: 0.2%">
+    <div class="col-md-12 pull-right">
+        <a class="btn btn-danger pull-right btn-with-icon"  ng-click="pagarTratamiento()"><i class="ion-cash"></i>Pagar tratamiento</a>
+        <a class="btn btn-primary pull-right btn-with-icon" style="margin-right: 2%" ng-click="citarTrabajo()"><i class="ion-ios-plus-outline"></i>Citar nuevo trabajo</a>
+    </div>
+</div>
+
+<div class="row">
+        <div class="col-md-12">
+            <div class="panel-group">
+                <div class="panel panel-default bootstrap-panel">
+                    <div class="panel-heading"><h2>TRABAJOS</h2></div>
+                    <div class="panel-body">
+                        <div class="col-md-3" ng-repeat="trabajos in tratamiento.trabajos">
+                            <div ba-panel ng-click="abrirModalPagoTrabajo(trabajos)" ng-class="{'desactivado':trabajos.pagado, 'puntero':!trabajos.pagado}">
+                                <p><strong>Trabajo:</strong> {{trabajos.id_trabajo.nombre_trabajo}}</p>
+                                <p><strong>Empleado:</strong> {{trabajos.id_empleado.nombre}} {{trabajos.id_empleado.apellido}}</p>
+                                <p><strong>Fecha:</strong> {{trabajos.fecha | date: "yyyy/MM/dd hh:mm a"}}</p>
+                                <p><strong>Pagado:</strong> <span ng-bind-html="trabajos.pagado | filtroPago"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="row" style="margin-bottom: 0.2%">
+    <div class="col-sm-4 col-xs-6 pull-right">
+        <a class="btn btn-primary pull-right btn-with-icon" href="#/crear_empleado"><i class="ion-person-add"></i>Nuevo
+            empleado</a>
+    </div>
+    <div class="col-sm-4 col-xs-6 pull-left">
+        <a class="btn btn-info pull-left btn-with-icon boton-margen" ng-click="generarReporte()"><i
+                class="ion-printer"></i>Imprimir reporte</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+        <div ba-panel>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr class="black-muted-bg">
+                        <td>Cédula</td>
+                        <td>Nombre</td>
+                        <td>Apellido</td>
+                        <td>Fecha nacimiento</td>
+                        <td>Edad</td>
+                        <td>Correo</td>
+                        <td>Cargo</td>
+                        <td></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="empleado in empleados">
+                        <td>{{empleado._id | number}}</td>
+                        <td>{{empleado.nombre}}</td>
+                        <td>{{empleado.apellido}}</td>
+                        <td>{{empleado.fechanac | date:"dd/MM/yyyy"}}</td>
+                        <td>{{empleado.edad}}</td>
+                        <td>{{empleado.correo}}</td>
+                        <td>{{empleado.cargo}}</td>
+                        <td>
+                            <a type="button" class="btn btn-info btn-with-icon" href="#/empleados/{{empleado._id}}"><i
+                                    class="ion-information"></i>Ver
+                                perfil
+                            </a>
+                            <button type="button" class="btn btn-danger btn-with-icon"
+                                    ng-click="eliminarEmpleado(empleado._id)"><i class="ion-alert-circled"></i>Eliminar
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,129 @@
+<div class="row" style="margin-bottom: 0.2%">
+    <div class="col-sm-4 col-xs-6 pull-right">
+        <a class="btn btn-primary pull-right btn-with-icon" ng-click="abrirForm()" ng-if="!perfilForm.$visible"><i
+                class="ion-edit"></i>Editar</a>
+        <div ng-if="perfilForm.$visible">
+            <button class="btn btn-success pull-right btn-with-icon" ng-click="submitForm()"><i
+                    class="ion-android-done"></i>Guardar
+            </button>
+            <button class="btn btn-warning pull-right btn-with-icon" ng-click="perfilForm.$cancel()"><i
+                    class="ion-android-cancel"></i>Cancelar
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<div ba-panel ba-panel-class="profile-page">
+    <div class="panel-content">
+
+        <h3 class="with-line">Información General</h3>
+
+        <div class="row">
+            <form editable-form name="$parent.perfilForm" onaftersave="editarPerfil()" novalidate>
+                <div class="col-md-6">
+                    <div class="form-group row clearfix">
+                        <label for="inputFirstName" class="col-sm-3 control-label">Nombre</label>
+
+                        <div class="col-sm-9">
+                        <span editable-text="userPerfil.nombre" e-name="nombre"
+                              onbeforesave="checkTexto($data,4,40,true)" e-required ng-bind-html="user.nombre"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row clearfix">
+                        <label for="inputLastName" class="col-sm-3 control-label">Apellido</label>
+                        <div class="col-sm-9">
+                        <span editable-text="userPerfil.apellido" e-name="apellido"
+                              onbeforesave="checkTexto($data,4,40,true)" e-required> {{user.apellido}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group row clearfix">
+                        <label for="inputOccupation" class="col-sm-3 control-label">Fecha de nacimiento</label>
+
+                        <div class="col-sm-9">
+                          <span editable-date="userPerfil.fechanac" e-name="fechanac"
+                                onbeforesave="checkDate($data, '1940-01-01','1998-12-31')" e-required> {{user.fechanac | date:'dd/MM/yyyy' }}</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group row clearfix">
+                        <label class="col-sm-3">Cargo</label>
+                        <span>{{user.cargo}}</span>
+                    </div>
+
+
+                    <div class="form-group row clearfix">
+                        <label for="inputOccupation" class="col-sm-3 control-label">Edad</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputOccupation" placeholder=""
+                                   ng-model="userPerfil.edad"
+                                   readonly>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <h3 class="with-line">Cambiar contraseña</h3>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group row clearfix">
+                    <label for="inputPassword3" class="col-sm-3 control-label">Contraseña actual</label>
+
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" id="inputPassword3"
+                               placeholder="Introduzca la clave actual" ng-model="claves.actual">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form name="cambioclaveform" novalidate>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row clearfix">
+                        <label for="inputPassword1" class="col-sm-3 control-label">Nueva contraseña</label>
+
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="inputPassword1"
+                                   placeholder="Introduzca la nueva clave" name="clave1" ng-model="claves.uno"
+                                   ng-minlength="6" ng-maxlength="15" required>
+                            <div ng-messages="cambioclaveform.clave1.$error"
+                                 ng-show="cambioclaveform.clave1.$touched">
+                                <div ng-message="required">Este campo es requerido</div>
+                                <div ng-message="minlength">La clave debe de de minimo 6 caracteres</div>
+                                <div ng-message="maxlength">La clave es muy larga</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group row clearfix">
+                        <label for="inputPassword2" class="col-sm-3 control-label">Repita la nueva contraseña</label>
+
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="inputPassword2"
+                                   placeholder="Repita la nueva clave" ng-model="claves.dos" name="clave2"
+                                   ng-minlength="6"
+                                   ng-maxlength="15" required>
+                            <div ng-messages="cambioclaveform.clave2.$error" ng-show="cambioclaveform.clave2.$touched">
+                                <div ng-message="required">Este campo es requerido</div>
+                                <div ng-message="minlength">La clave debe de de minimo 6 caracteres</div>
+                                <div ng-message="maxlength">La clave es muy larga</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary pull-right" ng-click="CambiarClave()"
+                        ng-disabled="cambioclaveform.$invalid">
+                    Cambiar clave
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+        <div ba-panel>
+            <div class="form-group">
+                <form name="cedulaPagosForm" novalidate>
+                    <label for="cedula">Introduzca la cédula del cliente</label>
+                    <input type="text" class="form-control" id="cedula" ng-model="CI.CI"
+                           placeholder="Introduzca la cédula del cliente"
+                           name="CI"
+                           ng-pattern="/^[0-9]+$/" ng-minlength="6" ng-maxlength="8" required>
+                    <div ng-messages="cedulaPagosForm.CI.$error" ng-show="cedulaPagosForm.CI.$touched">
+                        <div ng-message="required">Este campo es requerido</div>
+                        <div ng-message="pattern">Sólo se permiten números</div>
+                        <div ng-message="minlength">La cédula es muy corta</div>
+                        <div ng-message="maxlength">La cédula es muy larga</div>
+                    </div>
+                    <button class="btn btn-primary" ng-disabled="cedulaPagosForm.$invalid" ng-click="verPagos()">Ver
+                        trabajos pagados
+                    </button>
+                </form>
+            </div>
+
+            <!--<div class="row">-->
+            <!--<form class="form-inline">-->
+            <!--<div class="form-group">-->
+            <!--<label for="fecha1">Desde</label>-->
+            <!--<input type="date" ng-model="fechas.uno" class="form-control" id="fecha1">-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+            <!--<label for="Hasta">Hasta</label>-->
+            <!--<input type="date" ng-model="fechas.dos" class="form-control" id="Hasta" ng-change="validarFecha()">-->
+            <!--</div>-->
+            <!--</form>-->
+            <!--</div>-->
+
+            <div class="row">
+                <div ng-if="detalles.length > 0">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <label for="fecha1">Desde</label>
+                                    <input type="date" ng-model="fechas.uno" class="form-control" id="fecha1"
+                                           ng-change="validarFecha(1)">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Hasta">Hasta</label>
+                                    <input type="date" ng-model="fechas.dos" class="form-control" id="Hasta"
+                                           ng-change="validarFecha(2)">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-sm-4 col-xs-6 pull-right">
+                                <a class="btn btn-info pull-left btn-with-icon boton-margen" ng-if="detalles"
+                                   ng-click="generarReporte()"><i
+                                        class="ion-printer"></i>Imprimir reporte</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover ">
+                            <thead>
+                            <tr clas="black-muted-bg">
+                                <td colspan="4" style="text-align: center">CONCEPTOS</td>
+                            </tr>
+                            <tr class="black-muted-bg">
+                                <td>Fecha</td>
+                                <td>Concepto</td>
+                                <td>Forma de pago</td>
+                                <td>Monto</td>
+                                <td>¿Pagado al empleado?</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="deta in filtradoArr.Arr = (detalles | fechasFiltro:fechas.uno:fechas.dos:'fecha_pago')">
+                                <td>{{deta.fecha_pago | date:"dd/MM/yyyy hh:mm a"}}</td>
+                                <td>{{deta.id_trabajo.nombre_trabajo}}</td>
+                                <td>{{deta.forma_pago}}</td>
+                                <td>{{deta.monto | currency: "Bs. "}}</td>
+                                <td><span ng-bind-html="deta.cancelado_empleado | filtroPago"></span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

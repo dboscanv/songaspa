@@ -1,0 +1,503 @@
+<div class="row" style="margin-bottom: 0.2%">
+    <div class="col-sm-4 col-xs-6 pull-right">
+        <button class="btn btn-primary pull-right btn-with-icon" ng-if="!formHistoriaMedica.$visible"
+                ng-click="abrirForm()"><i class="ion-edit"></i>Editar
+        </button>
+        <div ng-if="formHistoriaMedica.$visible">
+            <button class="btn btn-success pull-right btn-with-icon" ng-click="submitForm()"><i
+                    class="ion-android-done"></i>Guardar
+            </button>
+            <button class="btn btn-warning pull-right btn-with-icon" ng-click="formHistoriaMedica.$cancel()"><i
+                    class="ion-android-cancel"></i>Cancelar
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+        <div ba-panel>
+            <!-- Imagen del cliente -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <img src="../../../assets/img/app/profile/Nasta.png" height="200">
+                </div>
+            </div>
+
+            <!-- Inicio del formulario -->
+            <form editable-form name="$parent.formHistoriaMedica" onaftersave="editarCliente()" style="margin-top:5%">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group has-feedback">
+                            <label class="historia">C.I:</label>
+                            <span class="historiaFiled" editable-text="cliente._id" e-name="_id"
+                                  onbeforesave="checkNumber($data,6,8,true)" e-required>{{cliente._id | number}}</span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Nombre:</label>
+                            <span class="historiaFiled" editable-text="cliente.nombre" e-name="nombre"
+                                  onbeforesave="checkTexto($data,4,40,true)" e-required>{{cliente.nombre}}</span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Apellido:</label>
+                            <span class="historiaFiled" editable-text="cliente.apellido" e-name="nombre"
+                                  onbeforesave="checkTexto($data,4,40,true)" e-required>{{cliente.apellido}}</span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Edad:</label>
+                            <span class="historiaFiled">{{cliente.edad}}</span>
+                        </div>
+                        <div class="form-group has-feedback">
+
+                            <label class="historia">Sexo:</label>
+                            <span class="historiaFiled" editable-select="cliente.sexo" e-name="sexo" e-ng-options="s.value as s.nombre for s in generos"
+                                  e-required>{{cliente.sexo}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group has-feedback">
+                            <label class="historia">Fecha de nacimiento:</label>
+                            <span class="historiaFiled" editable-date="cliente.fechanac" e-name="fechanac"
+                                  e-required onbeforesave="checkDate($data, '1940-01-01','2006-12-31')">{{cliente.fechanac | date:"dd/MM/yyyy"}}</span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Estado Civil:</label>
+                            <span class="historiaFiled" editable-select="cliente.estado_civil" e-name="estado_civil" e-ng-options="x.value as x.nombre for x in estado_civil"
+                                  e-required>{{cliente.estado_civil}}</span>
+                        </div>
+                        <!--<div class="form-group has-feedback">-->
+                            <!--<label class="historia">Hijos:</label>-->
+                            <!--<span class="historiaFiled" editable-text="cliente.hijos" e-name="hijos"-->
+                                  <!--onbeforesave="checkTexto($data)" e-required>{{cliente.hijos}}</span>-->
+                        <!--</div>-->
+                        <div class="form-group has-feedback">
+                            <label class="historia">Ocupación:</label>
+                            <span class="historiaFiled" editable-text="cliente.ocupacion" e-name="ocupacion"
+                                  onbeforesave="checkTexto($data,5,40,true)" e-required>{{cliente.ocupacion}}</span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">E-mail:</label>
+                            <span class="historiaFiled" editable-email="cliente.email" e-name="email"
+                                  onbeforesave="checkEmail($data)" e-required>{{cliente.email}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group has-feedback">
+                            <label class="historia">Teléfono:</label>
+                            <span class="historiaFiled" editable-text="cliente.telefono_hab" e-name="telefono_hab"
+                                  onbeforesave="checkNumber($data,11,30)" e-required>{{cliente.telefono_hab}}</span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Teléfono oficina:</label>
+                            <span class="historiaFiled" editable-text="cliente.telefono_ofic" e-name="telefono_ofic"
+                                  onbeforesave="checkNumber($data,11,30)" e-required>{{cliente.telefono_ofic}}</span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Celular:</label>
+                            <span class="historiaFiled" editable-text="cliente.celular" e-name="celular"
+                                  onbeforesave="checkNumber($data,11,30)" e-required>{{cliente.celular}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group has-feedback">
+                            <label class="historia">Direccion:</label>
+                            <span class="historiaFiled" editable-text="cliente.direccion" e-name="direccion"
+                                  onbeforesave="checkAlfaNumerico($data,5,150,true)" e-required>{{cliente.direccion}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center tituloHistoria">
+                            <h3>EVALUACIÓN CLINICA ESTÉTICA</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group has-feedback">
+                            <label class="historia">Hipertensión Arterial:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.hipertersion_arterial"
+                                  ng-bind-html="cliente.evaluacion_clinica.hipertersion_arterial | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Hipotensión:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.hipotension"
+                                  ng-bind-html="cliente.evaluacion_clinica.hipotension | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Diábetes:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.diabetes"
+                                  ng-bind-html="cliente.evaluacion_clinica.diabetes | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Recibido anestesia:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.recibido_anestesia"
+                                  ng-bind-html="cliente.evaluacion_clinica.recibido_anestesia | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Hepatitis:</label>
+                            <span class="historiaFiled" e-title="Si/No" editable-checkbox="cliente.evaluacion_clinica.hepatitis"
+                                  ng-bind-html="cliente.evaluacion_clinica.hepatitis | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Cáncer:</label>
+                            <span class="historiaFiled" e-title="Si/No" editable-checkbox="cliente.evaluacion_clinica.cancer"
+                                  ng-bind-html="cliente.evaluacion_clinica.cancer | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Antecedentes Dermatologicos:</label>
+                            <span class="historiaFiled" e-title="Si/No" editable-checkbox="cliente.evaluacion_clinica.antecedentes_dermat"
+                                  ng-bind-html="cliente.evaluacion_clinica.antecedentes_dermat | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Herpes:</label>
+                            <span class="historiaFiled" e-title="Si/No" editable-checkbox="cliente.evaluacion_clinica.herpes"
+                                  ng-bind-html="cliente.evaluacion_clinica.herpes | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Fuma:</label>
+                            <span class="historiaFiled" e-title="Si/No" editable-checkbox="cliente.evaluacion_clinica.fuma"
+                                  ng-bind-html="cliente.evaluacion_clinica.fuma | checkboxFilter"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group has-feedback">
+                            <label class="historia">Insuficiencia Renal:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.renal"
+                                  ng-bind-html="cliente.evaluacion_clinica.renal | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Cardiopatio:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.cardiopatio "
+                                  ng-bind-html="cliente.evaluacion_clinica.cardiopatio | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Circulación:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.circulacion"
+                                  ng-bind-html="cliente.evaluacion_clinica.circulacion | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Anticonceptivos oral:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.anticon_oral"
+                                  ng-bind-html="cliente.evaluacion_clinica.anticon_oral | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Problemas Urinarios:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.prob_urinarios"
+                                  ng-bind-html="cliente.evaluacion_clinica.prob_urinarios | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Retención de Liquidos:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.rete_liquidos"
+                                  ng-bind-html="cliente.evaluacion_clinica.rete_liquidos | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Hongos:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.hongos"
+                                  ng-bind-html="cliente.evaluacion_clinica.hongos | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Cesareas:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.cesareas"
+                                  ng-bind-html="cliente.evaluacion_clinica.cesareas | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Toma:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.toma"
+                                  ng-bind-html="cliente.evaluacion_clinica.toma | checkboxFilter"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group has-feedback">
+                            <label class="historia">Trastorno Menstrual:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.tras_mens"
+                                  ng-bind-html="cliente.evaluacion_clinica.tras_mens | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">F_U_R:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.f_u_r"
+                                  ng-bind-html="cliente.evaluacion_clinica.f_u_r | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">D_I_U:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.d_i_u"
+                                  ng-bind-html="cliente.evaluacion_clinica.d_i_u | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Tiroides:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.tiroides"
+                                  ng-bind-html="cliente.evaluacion_clinica.tiroides | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Problemas Respiratorios:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.prob_respiratorios"
+                                  ng-bind-html="cliente.evaluacion_clinica.prob_respiratorios | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Asma:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.asma"
+                                  ng-bind-html="cliente.evaluacion_clinica.asma | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">¿Ha recibido anestesia?:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.recibido_anestesia"
+                                  ng-bind-html="cliente.evaluacion_clinica.recibido_anestesia | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">¿Lentes de contacto?:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.lentes_contacto"
+                                  ng-bind-html="cliente.evaluacion_clinica.lentes_contacto | checkboxFilter"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group has-feedback">
+                            <label class="historia">Epilepsia:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.epilepsia"
+                                  ng-bind-html="cliente.evaluacion_clinica.epilepsia | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Lupus:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.lupus"
+                                  ng-bind-html="cliente.evaluacion_clinica.lupus | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Problemas Digestivos:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.problemas_digestivos"
+                                  ng-bind-html="cliente.evaluacion_clinica.problemas_digestivos | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="historia">Estrenimiento:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.estrenimiento"
+                                  ng-bind-html="cliente.evaluacion_clinica.estrenimiento | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Marcapasos:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.marcapasos"
+                                  ng-bind-html="cliente.evaluacion_clinica.marcapasos | checkboxFilter"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Alergias:</label>
+                            <span class="historiaFiled" e-title="Si/No"
+                                  editable-checkbox="cliente.evaluacion_clinica.alergias"
+                                  ng-bind-html="cliente.evaluacion_clinica.alergias | checkboxFilter"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center tituloHistoria">
+                            <h3>OTROS</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group has-feedback">
+                            <label class="historia">Medicamentos:</label>
+                            <span class="historiaFiled" editable-text="cliente.evaluacion_clinica.medicamentos" e-name="evaluacion_clinica.medicamentos"
+                                  onbeforesave="checkTexto($data,6,150,true)"
+                                  ng-bind-html="cliente.evaluacion_clinica.medicamentos"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group has-feedback">
+                            <label class="historia">¿Qué cirugías se ha realizado?:</label>
+                            <span class="historiaFiled"
+                                  ng-bind-html="cliente.medicamentos"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Complicaciones de la cirugía:</label>
+                            <span class="historiaFiled"
+                                  ng-bind-html="cliente.evaluacion_clinica.complicaciones"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group has-feedback">
+                            <label class="historia">¿Recibido implantes?:</label>
+                            <span class="historiaFiled"
+
+                                  ng-bind-html="cliente.evaluacion_clinica.recibido_implantes | checkboxFilter"></span>
+                        </div>
+                        <div ng-if="cliente.evaluacion_clinica.recibido_implantes">
+
+                            <div class="form-group has-feedback">
+                                <label class="historia">Tiempo:</label>
+                                <span class="historiaFiled"
+                                      ng-bind-html="cliente.evaluacion_clinica.implantes.tiempo"></span>
+                            </div>
+
+
+                            <div class="form-group has-feedback">
+                                <label class="historia">Área:</label>
+                                <span class="historiaFiled"
+                                      ng-bind-html="cliente.evaluacion_clinica.implantes.area"></span>
+                            </div>
+
+
+                            <div class="form-group has-feedback">
+                                <label class="historia">Tipo de implante:</label>
+                                <span class="historiaFiled"
+                                      ng-bind-html="cliente.evaluacion_clinica.implantes.tipo"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group has-feedback">
+                            <label class="historia">¿Se ha realizado peeling?:</label>
+                            <span class="historiaFiled"
+                                  ng-bind-html="cliente.evaluacion_clinica.peeling.realizado_antes | checkboxFilter"></span>
+                        </div>
+                        <div ng-if="cliente.evaluacion_clinica.peeling.realizado_antes">
+
+                            <div class="form-group has-feedback">
+                                <label class="historia">Cuando:</label>
+                                <span class="historiaFiled"
+                                      ng-bind-html="cliente.evaluacion_clinica.peeling.cuando"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group has-feedback">
+                            <label class="historia">Otros aparatos que utiliza:</label>
+                            <span class="historiaFiled" editable-text="cliente.evaluacion_clinica.otros_aparatos" e-name="evaluacion_clinica.otros_aparatos"
+                                  onbeforesave="checkTexto($data,5,150,false,1413414)"
+                                  ng-bind-html="cliente.evaluacion_clinica.otros_aparatos"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group has-feedback">
+                            <label class="historia">Productos utilizados actualmente:</label>
+                            <span class="historiaFiled" editable-text="cliente.evaluacion_clinica.productos_utilizados" e-name="evaluacion_clinica.productos_utilizados"
+                                  onbeforesave="checkTexto($data,5,150,false)"
+                                  ng-bind-html="cliente.evaluacion_clinica.productos_utilizados"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group has-feedback">
+                            <label class="historia">Medicamento(s) actual(es):</label>
+                            <span class="historiaFiled" editable-text="cliente.evaluacion_clinica.medicamentos_actual" e-name="evaluacion_clinica.medicamentos_actual"
+                                  onbeforesave="checkTexto($data,5,150,false)"
+                                  ng-bind-html="cliente.evaluacion_clinica.medicamentos_actual" e-required></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center tituloHistoria">
+                            <h3>MOTIVO DE CONSULTA</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            <label class="historia">Tipo de piel:</label>
+                            <span class="historiaFiled" editable-text="cliente.motivo_consulta.tipo_piel" e-name="motivo_consulta.tipo_piel"
+                                  onbeforesave="checkTexto($data,5,150,true)"
+                                  ng-bind-html="cliente.motivo_consulta.tipo_piel" e-required></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Fototipo de piel:</label>
+                            <span class="historiaFiled"  editable-text="cliente.motivo_consulta.fototipo_piel" e-name="motivo_consulta.fototipo_piel"
+                                  onbeforesave="checkTexto($data,5,150,true)"
+                                  ng-bind-html="cliente.motivo_consulta.fototipo_piel" e-required></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Talangestasia:</label>
+                            <span class="historiaFiled"  editable-text="cliente.motivo_consulta.talqangestasia" e-name="motivo_consulta.talqangestasia"
+                                  onbeforesave="checkTexto($data,5,150,true)"
+                                  ng-bind-html="cliente.motivo_consulta.talqangestasia" e-required></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group has-feedback">
+                            <label class="historia">Manchas:</label>
+                            <span class="historiaFiled"  editable-text="cliente.motivo_consulta.manchas" e-name="motivo_consulta.manchas"
+                                  onbeforesave="checkTexto($data,5,150,true)"
+                                  ng-bind-html="cliente.motivo_consulta.manchas" e-required></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Arrugas:</label>
+                            <span class="historiaFiled"  editable-text="cliente.motivo_consulta.arrugas" e-name="motivo_consulta.arrugas"
+                                  onbeforesave="checkTexto($data,5,150,true)"
+                                  ng-bind-html="cliente.motivo_consulta.arrugas" e-required></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="historia">Arrugas Profundas:</label>
+                            <span class="historiaFiled"  editable-text="cliente.motivo_consulta.arrugas_profundas" e-name="motivo_consulta.arrugas_profundas"
+                                  onbeforesave="checkTexto($data,5,150,true)"
+                                  ng-bind-html="cliente.motivo_consulta.arrugas_profundas" e-required></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center tituloHistoria">
+                            <h3>OBSERVACIONES</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="form-group has-feedback text-center">
+                            <label class="historia">¿Algo más qué agregar?:</label>
+                            <textarea class="historiaFiled textAreaHistoria" e-rows="7" e-cols="40"
+                                      editable-textarea="cliente.observaciones"
+                                      e-name="observaciones" onbeforesave="checkTexto($data,4,300,false)"
+                            >{{cliente.observaciones || "Sin observaciones"}}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

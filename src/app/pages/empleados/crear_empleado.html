@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+        <div ba-panel>
+            <form name="formEmpleado" style="margin-top:5%" novalidate>
+                <div class="form-group" ng-class="{'has-error': formEmpleado.cedula.$invalid && (formEmpleado.cedula.$dirty || formEmpleado.$submitted)}">
+                    <label for="cedulaID" class="title">Cédula:</label>
+                    <input type="text" ng-model="empleado.cedula" name="cedula" class="form-control" id="cedulaID"
+                           placeholder="Cédula del empleado" ng-pattern="/^[0-9]+$/" ng-minlength="6" ng-maxlength="8"
+                           required>
+                    <div ng-messages="formEmpleado.cedula.$error" ng-show="formEmpleado.cedula.$touched">
+                        <div ng-message="required">Este campo es requerido</div>
+                        <div ng-message="pattern">Sólo se permiten números</div>
+                        <div ng-message="minlength">La cédula es muy corta</div>
+                        <div ng-message="maxlength">La cédula es muy larga</div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': formEmpleado.nombre.$invalid && (formEmpleado.nombre.$dirty || formEmpleado.$submitted)}">
+                    <label for="nombre" class="title">Nombre:</label>
+                    <input type="text" ng-model="empleado.nombre" class="form-control" id="nombre" name="nombre"
+                           placeholder="Nombre del empleado" ng-maxlength="40" ng-minlength="4" ng-pattern="/^([A-Za-zÑñáéíóúÁÉÍÓÚ ]+)$/" required>
+                    <div ng-messages="formEmpleado.nombre.$error" ng-show="formEmpleado.nombre.$touched">
+                        <div ng-message="required">Este campo es requerido</div>
+                        <div ng-message="pattern">Sólo se permiten letras</div>
+                        <div ng-message="minlength">El nombre es muy corto</div>
+                        <div ng-message="maxlength">El nombre es muy largo</div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': formEmpleado.apellido.$invalid && (formEmpleado.apellido.$dirty || formEmpleado.$submitted)}">
+                    <label for="apellido" class="title">Apellido:</label>
+                    <input type="text" ng-model="empleado.apellido" class="form-control" name="apellido"
+                           id="apellido" placeholder="Apellido" ng-maxlength="40" ng-minlength="4" ng-pattern="/^([A-Za-zÑñáéíóúÁÉÍÓÚ ]+)$/" required>
+                    <div ng-messages="formEmpleado.apellido.$error" ng-show="formEmpleado.apellido.$touched">
+                        <div ng-message="required">Este campo es requerido</div>
+                        <div ng-message="pattern">Sólo se permiten letras</div>
+                        <div ng-message="minlength">El apellido es muy corto</div>
+                        <div ng-message="maxlength">El apellido es muy largo</div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': formEmpleado.cargo.$invalid && (formEmpleado.cargo.$dirty || formEmpleado.$submitted)}">
+                    <label for="cargo" class="title">Cargo:</label>
+                    <select name="cargo" class="form-control" id="cargo" ng-model="empleado.cargo" ng-options="s as s for s in cargos" required></select>
+                    <div ng-messages="formEmpleado.cargo.$error" ng-show="formEmpleado.cargo.$touched">
+                        <div ng-message="required">Este campo es requerido</div>
+                    </div>
+                    <!--<input type="text" ng-model="empleado.cargo" class="form-control"-->
+                    <!--id="cargo" placeholder="Apellido">-->
+                </div>
+                <div class="form-group" ng-class="{'has-error': formEmpleado.email.$invalid && (formEmpleado.email.$dirty || formEmpleado.$submitted)}">
+                    <label for="correo" class="title">E-mail:</label>
+                    <input type="email" ng-model="empleado.correo" class="form-control"
+                           id="correo" placeholder="E-mail" name="email" ng-pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/" required>
+                    <div ng-messages="formEmpleado.email.$error" ng-show="formEmpleado.email.$touched">
+                        <div ng-message="required">Este campo es requerido</div>
+                        <div ng-message="pattern">No es un e-mail válido</div>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{'has-error': formEmpleado.fechanac.$invalid && (formEmpleado.fechanac.$dirty || formEmpleado.$submitted)}">
+                    <label for="fechanac" class="title">Fecha de nacimiento</label>
+                    <input type="date" ng-model="empleado.fechanac" class="form-control" name="fechanac"
+                           id="fechanac" placeholder="Fecha de nacimiento" min="1940-01-01" max="1998-12-31" required>
+                    <div ng-messages="formEmpleado.fechanac.$error" ng-show="formEmpleado.fechanac.$touched">
+                        <div ng-message="required">Este campo es requerido</div>
+                        <div ng-message="max">La fecha es muy reciente</div>
+                        <div ng-message="min">La fecha es muy antigua</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary pull-right" ng-disabled="formEmpleado.$invalid" ng-click="crearEmpleado()">Guardar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

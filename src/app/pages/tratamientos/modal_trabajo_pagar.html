@@ -1,0 +1,88 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{titulo || "¿Que desea realizar?"}}</h4>
+    </div>
+    <div class="modal-body">
+        <div ng-show="!bandera1">
+
+            <button class="btn btn-primary btn-block" ng-click="pagarBandera()">Pagar trabajo</button>
+            <button class="btn btn-danger btn-block" ng-click="ignorarTrabajo()">La persona no asistió</button>
+
+        </div>
+        <form name="form.pagoForm" ng-if="bandera1" novalidate>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="monto">Monto</label>
+                    <input type="text" class="form-control" name="monto" id="monto" placeholder="Precio"
+                           ng-model="trabajoSeleccionado.id_trabajo.precio" disabled ng-pattern="/^[0-9]+$/"
+                           ng-minlength="2" required>
+                    <!--<div ng-messages="form.pagoForm.monto.$error" ng-show="form.pagoForm.monto.$touched">-->
+                    <!--<div ng-message="required">Este campo es requerido</div>-->
+                    <!--<div ng-message="pattern">Sólo se permiten números</div>-->
+                    <!--<div ng-message="minlength">El monto es muy inferior</div>-->
+                    <!--</div>-->
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="forma_pago">Forma de pago</label>
+                    <select class="form-control" id="empleado"
+                            name="forma_pago"
+                            ng-model="pago.forma_pago"
+                            id="forma_pago"
+                            ng-options="forma as forma for forma in formas"
+                            required>
+                    </select>
+                    <div ng-messages="form.pagoForm.forma_pago.$error" ng-show="form.pagoForm.forma_pago.$touched">
+                        <div ng-message="required">Este campo es requerido</div>
+                    </div>
+                </div>
+                <div ng-switch on="pago.forma_pago">
+                    <div class="col-md-12 form-group" ng-switch-when="Deposito">
+                        <label for="comprobante">Número del comprobante</label>
+                        <input type="text" class="form-control" name="comprobante" id="comprobante"
+                               placeholder="Comprobante"
+                               ng-model="pago.numero_comprobante" ng-minlength="2" ng-maxlength="50" required>
+                        <div ng-messages="form.pagoForm.comprobante.$error"
+                             ng-show="form.pagoForm.comprobante.$touched">
+                            <div ng-message="required">Este campo es requerido</div>
+                            <div ng-message="minlength">El monto es muy inferior</div>
+                            <div ng-message="maxlength">El comprobante es muy largo</div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 form-group" ng-switch-when="Transferencia">
+                        <label for="comprobante">Número del comprobante</label>
+                        <input type="text" class="form-control" name="comprobante" id="comprobante"
+                               placeholder="Comprobante"
+                               ng-model="pago.numero_comprobante" ng-minlength="2" ng-maxlength="50" required>
+                        <div ng-messages="form.pagoForm.comprobante.$error"
+                             ng-show="form.pagoForm.comprobante.$touched">
+                            <div ng-message="required">Este campo es requerido</div>
+                            <div ng-message="minlength">El monto es muy inferior</div>
+                            <div ng-message="maxlength">El comprobante es muy largo</div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 form-group" ng-switch-when="Cheque">
+                        <label for="comprobante">Número del comprobante</label>
+                        <input type="text" class="form-control" name="comprobante" id="comprobante"
+                               placeholder="Comprobante"
+                               ng-model="pago.numero_comprobante" ng-minlength="2" ng-maxlength="50" required>
+                        <div ng-messages="form.pagoForm.comprobante.$error"
+                             ng-show="form.pagoForm.comprobante.$touched">
+                            <div ng-message="required">Este campo es requerido</div>
+                            <div ng-message="minlength">El comprobante es muy corto</div>
+                            <div ng-message="maxlength">El comprobante es muy largo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer" ng-show="bandera1">
+        <button type="button" class="btn btn-primary" ng-disabled="form.pagoForm.$invalid"
+                ng-click="registrarPagoTrabajo(this)">
+            Registrar pago
+        </button>
+    </div>
+</div>

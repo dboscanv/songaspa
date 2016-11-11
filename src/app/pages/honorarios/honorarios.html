@@ -1,0 +1,86 @@
+<div class="row pull-rigth">
+    <a class="btn btn-primary" style="margin-left: 2%" href="#/historico">Ver histórico de pagos</a>
+</div>
+
+<div class="pull-right" style="margin-bottom: 0.2%">
+    <form name="porcentajeForm" class="row form-inline" novalidate>
+        <div class="form-group col-sm-3 col-md-4">
+            <input type="text" class="form-control" ng-model="porcentaje"
+                   name="porce"
+                   placeholder="Introduzca el porcentaje de la estética"
+                   ng-pattern="/^[0-9]+$/" ng-minlength="1" ng-maxlength="2" required>
+            <div ng-messages="porcentajeForm.porce.$error" ng-show="porcentajeForm.porce.$touched">
+                <div ng-message="required">Este campo es requerido</div>
+                <div ng-message="pattern">Sólo se permiten números mayores que cero</div>
+                <div ng-message="minlength">Debe de haber al menos una unidad</div>
+                <div ng-message="maxlength">El porcentaje es demasiado elevado</div>
+            </div>
+        </div>
+        <button class="btn btn-primary boton-margen" ng-disabled="porcentajeForm.$invalid" ng-click="guardarPorcentaje()">Cambiar %
+        </button>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+        <div ba-panel>
+            <div class="form-group">
+                <label for="empleado">Seleccione un empleado</label>
+                <select class="form-control" id="empleado"
+                        name="empleado"
+                        id="empleado"
+                        ng-model="empleadoSelec.CI"
+                        ng-options="empleado._id as empleado.nombre + ' ' + empleado.apellido for empleado in empleados"
+                        ng-change="pedirTrabajos()"
+                        required>
+                </select>
+            </div>
+            <div ng-if="detalles" class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr clas="black-muted-bg">
+                        <td colspan="4" style="text-align: center">CONCEPTOS</td>
+                    </tr>
+                    <tr class="black-muted-bg">
+                        <td>Fecha</td>
+                        <td>Concepto</td>
+                        <td>Cliente</td>
+                        <td>Precio trabajo</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="deta in detalles">
+                        <td>{{deta.fecha | date:"dd/MM/yyyy hh:mm a"}}</td>
+                        <td>{{deta.trabajo_popular.nombre_trabajo}}</td>
+                        <td>{{deta.nombre + " " + deta.apellido}}</td>
+                        <td>{{deta.trabajo_popular.precio | currency: "Bs. "}}</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr style="text-align: right">
+                        <td colspan="4">
+                            <strong>TOTAL:</strong> {{totalTrabajos | currency: "Bs. "}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <strong>IVA (12%):</strong> {{IVA | currency: "Bs. "}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <strong>ESTETICA ({{porcentajeOriginal + " %"}}):</strong> {{estetica | currency: "Bs. "}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <strong>TOTAL A PAGAR:</strong> {{totalPago | currency: "Bs. "}}
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+                <button class="btn btn-success pull-right" ng-click="Pagar()">PAGAR</button>
+            </div>
+        </div>
+    </div>
+</div>

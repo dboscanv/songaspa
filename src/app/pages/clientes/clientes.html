@@ -1,0 +1,53 @@
+<div class="row" style="margin-bottom: 0.2%">
+    <div class="col-sm-4 col-xs-6 pull-right">
+        <a class="btn btn-primary pull-right btn-with-icon boton-margen" href="#/crear_cliente"><i
+                class="ion-person-add"></i>Nuevo cliente</a>
+    </div>
+    <div class="col-sm-4 col-xs-6 pull-left">
+        <a class="btn btn-info pull-left btn-with-icon boton-margen" ng-click="generarReporte()"><i
+                class="ion-printer"></i>Imprimir reporte</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+        <div ba-panel>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-condensed">
+                    <thead>
+                    <tr class="black-muted-bg">
+                        <td>Cédula</td>
+                        <td>Nombre</td>
+                        <td>Apellido</td>
+                        <td>Fecha nacimiento</td>
+                        <td>Edad</td>
+                        <td>Sexo</td>
+                        <td>Email</td>
+                        <td></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="cliente in clientes">
+                        <td>{{cliente._id | number}}</td>
+                        <td>{{cliente.nombre}}</td>
+                        <td>{{cliente.apellido}}</td>
+                        <td>{{cliente.fechanac | date:"dd/MM/yyyy"}}</td>
+                        <td>{{cliente.edad}}</td>
+                        <td>{{cliente.sexo}}</td>
+                        <td>{{cliente.email}}</td>
+                        <td>
+                            <a type="button" href="#/ver_cliente/{{cliente._id}}" class="btn btn-info btn-with-icon"><i
+                                    class="ion-information"></i>Ver
+                                historia
+                            </a>
+                            <button type="button" class="btn btn-danger btn-with-icon"
+                                    ng-click="eliminarCliente(cliente._id)"><i class="ion-alert-circled"></i>Eliminar
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
