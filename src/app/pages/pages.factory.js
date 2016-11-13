@@ -56,7 +56,7 @@
                         doc.setTextColor(0, 0, 0);
                         // doc.text(40, 120, );
                         doc.addImage(logoB64, 'JPG', 330, 1, 230, 145);
-                        doc.setFontSize(12);
+                        // doc.setFontSize(12);
                         // doc.text('Nombre vendedor: ' + security.ObtenerNombre(), data.settings.margin.left, data.settings.margin.top - 10);
                     },
                     afterPageContent: function (data) {
@@ -66,7 +66,7 @@
                             str = str + " de " + totalPagesExp + " | Emisión: " + fecha;
                         }
                         
-                
+                        doc.setFontSize(7);
                         doc.text(str, data.settings.margin.left, doc.internal.pageSize.height - 30);
                         doc.text("Usuario: " + user.nombre + " " + user.apellido + " | Cargo: " + user.cargo, data.settings.margin.right + 350, doc.internal.pageSize.height - 30);
 

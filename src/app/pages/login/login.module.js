@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('BlurAdmin.pages.Login', ['angular-jwt','ngPatternRestrict'])
+    angular.module('BlurAdmin.pages.Login', ['angular-jwt'])
         .config(routeConfig);
 
     /** @ngInject */
