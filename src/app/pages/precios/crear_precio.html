@@ -21,7 +21,7 @@
             </div>
             <div class="form-group col-md-6">
                 <input type="text" class="form-control" name="precio" id="exampleInputEmail2" placeholder="Precio"
-                       ng-model="newTrabajo.precio" ng-pattern="/^[0-9]+$/" ng-maxlength="8" ng-minlength="2" required>
+                       ng-model="newTrabajo.precio" ng-pattern="/^[0-9]+$/" ng-maxlength="8" ng-minlength="4" required>
                 <div ng-messages="precioForm.precio.$error" ng-show="precioForm.precio.$touched">
                     <div ng-message="required">Este campo es requerido</div>
                     <div ng-message="pattern">Sólo se permiten números</div>

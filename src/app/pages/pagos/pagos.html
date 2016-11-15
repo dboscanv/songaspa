@@ -78,7 +78,7 @@
                                 <td>{{deta.fecha_pago | date:"dd/MM/yyyy hh:mm a"}}</td>
                                 <td>{{deta.id_trabajo.nombre_trabajo}}</td>
                                 <td>{{deta.forma_pago}}</td>
-                                <td>{{deta.monto | currency: "Bs. "}}</td>
+                                <td>{{ (deta.monto == 0) ? deta.id_trabajo.precio : deta.monto | currency: "Bs. "}}</td>
                                 <td><span ng-bind-html="deta.cancelado_empleado | filtroPago"></span></td>
                             </tr>
                             </tbody>

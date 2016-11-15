@@ -80,7 +80,7 @@
                         console.log(new Date($scope.events[x].startsAt));
                     }
                 } else if (data.status == 5) {
-                    // swal("ATENCIÓN", "No hay trabajos pautados para este empleado", "info");
+                    $scope.events = [];
                 } else {
                     swal("ATENCIÓN", "Ha ocurrido un error", "error");
                 }

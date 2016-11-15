@@ -5,10 +5,10 @@
         .module('BlurAdmin.pages.tratamientos')
         .controller('tratamientoDetallesCtrl', tratamientoDetallesCtrl);
 
-    tratamientoDetallesCtrl.$inject = ['$scope', 'tratamientosFactory', '$stateParams', '$uibModal', '$state', '$timeout'];
+    tratamientoDetallesCtrl.$inject = ['$scope', 'tratamientosFactory', '$stateParams', '$uibModal', '$state', '$timeout', '$location'];
 
     /* @ngInject */
-    function tratamientoDetallesCtrl($scope, tratamientosFactory, $stateParams, $uibModal, $state, $timeout) {
+    function tratamientoDetallesCtrl($scope, tratamientosFactory, $stateParams, $uibModal, $state, $timeout,$location) {
         $scope.newCita = {};
         $scope.popup = {};
         $scope.fecha = {};
@@ -168,7 +168,7 @@
             tratamientosFactory.finalizarTratamiento($scope.idTratamiento).get().$promise.then(function (data) {
                 if (data.status == 1) {
                     swal("ÉXITO", "Tratamiento finalizado con éxito", "success");
-                    $state.reload();
+                    $state.go("ver_tratamientos");
                 } else if (data.status == 2) {
                     swal("ATENCIÓN", "Ha ocurrido un error", "error");
                 } else if (data.status == 4) {

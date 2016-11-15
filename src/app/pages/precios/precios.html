@@ -25,12 +25,12 @@
                             {{$index + 1}}
                         </td>
                         <td>
-        <span editable-text="trabajo.nombre_trabajo" e-name="nombre_trabajo" e-form="rowform" e-required>
+        <span editable-text="trabajo.nombre_trabajo" e-name="nombre_trabajo" e-form="rowform" onbeforesave="checkTexto($data,4,50,true)" e-required>
           {{ trabajo.nombre_trabajo }}
         </span>
                         </td>
                         <td>
-        <span editable-number="trabajo.precio" e-name="precio" e-form="rowform" e-required>
+        <span editable-number="trabajo.precio" e-name="precio" e-form="rowform" onbeforesave="checkNumber($data,1000,1000000,true)" e-required>
           {{ trabajo.precio | currency: "Bs. "}}
         </span>
                         </td>
