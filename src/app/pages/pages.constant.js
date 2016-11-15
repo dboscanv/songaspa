@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module("BlurAdmin.pages")
-        .constant("servidor", "http://104.196.154.203") //https://songa-backend2.herokuapp.com/
+        .constant("servidor", "http://104.196.154.203/") //https://songa-backend2.herokuapp.com/
         .constant("cargos", [
             "Presidenta", "Secretaria", "Masajista", "Terapeuta"
         ])
