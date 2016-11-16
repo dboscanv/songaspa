@@ -8,7 +8,7 @@
     tratamientoDetallesCtrl.$inject = ['$scope', 'tratamientosFactory', '$stateParams', '$uibModal', '$state', '$timeout', '$location'];
 
     /* @ngInject */
-    function tratamientoDetallesCtrl($scope, tratamientosFactory, $stateParams, $uibModal, $state, $timeout,$location) {
+    function tratamientoDetallesCtrl($scope, tratamientosFactory, $stateParams, $uibModal, $state, $timeout, $location) {
         $scope.newCita = {};
         $scope.popup = {};
         $scope.fecha = {};
@@ -120,25 +120,36 @@
 
         //Finalmente, citar un nuevo trabajo
         $scope.citar = function (modal) {
-            tratamientosFactory.guardarTrabajo($stateParams.id, $stateParams.idcliente).save($scope.newCita).$promise.then(function (data) {
-                if (data.status == 1) {
-                    swal("ÉXITO", "Cita guardada satisfactoriamente", "success");
-                    $timeout(function () {
-                        $state.reload();
-                        modal.$dismiss();
-                    }, 1000);
-                } else if (data.status == 2) {
-                    swal("ATENCIÓN", "Ha ocurrido un error", "error");
-                } else if (data.status == 6) {
-                    swal("SIN DISPONIBLIIDAD", "El empleado o el cliente ya tienen asignado un trabajo para esa fecha", "error");
+            var fecha = moment($scope.newCita.fecha);
+            var fecha_inicio = moment($scope.tratamiento.fecha_inicio);
+
+            if (fecha.hour() <= 19 && fecha.hour() >= 6) {
+                if (fecha.isBefore(fecha_inicio)) {
+                    swal("ATENCIÓN", "No puedes agendar un trabajo antes de la fecha de inicio del tratamiento", "info");
                 } else {
-                    swal("ATENCIÓN", "No se estableció conexión con el servidor", "error");
-                    console.log(data.salida);
+                    tratamientosFactory.guardarTrabajo($stateParams.id, $stateParams.idcliente).save($scope.newCita).$promise.then(function (data) {
+                        if (data.status == 1) {
+                            swal("ÉXITO", "Cita guardada satisfactoriamente", "success");
+                            $timeout(function () {
+                                $state.reload();
+                                modal.$dismiss();
+                            }, 1000);
+                        } else if (data.status == 2) {
+                            swal("ATENCIÓN", "Ha ocurrido un error", "error");
+                        } else if (data.status == 6) {
+                            swal("SIN DISPONIBLIIDAD", "El empleado o el cliente ya tienen asignado un trabajo para esa fecha", "error");
+                        } else {
+                            swal("ATENCIÓN", "No se estableció conexión con el servidor", "error");
+                            console.log(data.salida);
+                        }
+                    }).catch(function (data) {
+                        swal("ATENCIÓN", "No se estableció conexión con el servidor", "error");
+                        console.log(data.salida);
+                    });
                 }
-            }).catch(function (data) {
-                swal("ATENCIÓN", "No se estableció conexión con el servidor", "error");
-                console.log(data.salida);
-            });
+            } else {
+                swal("FUERA DE HORARIO", "No se puede apartar cita fuera del horario comprendido de 06:00AM a 08:00PM", "info");
+            }
         };
 
         $scope.pagarTratamiento = function () {
@@ -206,7 +217,7 @@
             console.log(tratamiento);
             for (var x = 0; x < tratamiento.trabajos.length; x++) {
                 for (var y = 0; y < $scope.pagos.length; y++) {
-                    if(tratamiento.trabajos[x]._id == $scope.pagos[y].trabajo_realizado) {
+                    if (tratamiento.trabajos[x]._id == $scope.pagos[y].trabajo_realizado) {
                         console.log("¡¡¡Encontro un pago!!!");
                         tratamiento.trabajos[x].pagado = true;
                     }

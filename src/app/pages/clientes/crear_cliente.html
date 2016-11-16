@@ -11,12 +11,13 @@
                                          ng-class="{'has-error': vm.InfoForm.cedula.$invalid && (vm.InfoForm.cedula.$dirty || vm.InfoForm.$submitted)}">
                                         <label for="cedula">Cédula de identidad</label>
                                         <input type="text" class="form-control" id="cedula" name="cedula"
-                                               placeholder="Cédula" ng-model="cliente._id" ng-pattern="/^[0-9]+$/" ng-minlength="6" ng-maxlength="8" required>
+                                               placeholder="Cédula" ng-model="cliente._id" cedula-form ng-pattern="/^[0-9]+$/" ng-minlength="6" ng-maxlength="8" required>
                                         <div ng-messages="vm.InfoForm.cedula.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.cedula.$touched">
                                             <div ng-message="required">Este campo es requerido</div>
                                             <div ng-message="pattern">Sólo se permiten números</div>
                                             <div ng-message="minlength">La cédula es muy corta</div>
                                             <div ng-message="maxlength">La cédula es muy larga</div>
+                                            <div ng-message="validadorCedula">La cédula no es válida</div>
                                         </div>
                                     </div>
                                 </div>
@@ -69,7 +70,7 @@
                                         <label for="estado_civil">Estado Civil</label>
                                         <select class="form-control" name="estado_civil" id="estado_civil"
                                                 ng-model="cliente.estado_civil" required>
-                                            <option value="Soltera" ng-selected="true">Soltera(o)</option>
+                                            <option value="Soltera">Soltera(o)</option>
                                             <option value="Casada">Casada(o)</option>
                                             <option value="Viuda">Viuda(o)</option>
                                         </select>
@@ -83,7 +84,7 @@
                                         <select class="form-control" name="sexo" id="sexo"
                                                 ng-model="cliente.sexo" required>
                                             <option value="M">Masculino</option>
-                                            <option value="F" ng-selected="true">Femenino</option>
+                                            <option value="F">Femenino</option>
                                         </select>
                                         <span class="help-block error-block basic-block">Este campo es requerido</span>
                                     </div>
@@ -103,9 +104,9 @@
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback"
                                          ng-class="{'has-error': vm.InfoForm.telefono.$invalid && (vm.InfoForm.telefono.$dirty || vm.InfoForm.$submitted)}">
-                                        <label for="Telefono">Telefono (Hab)</label>
+                                        <label for="Telefono">Teléfono (Hab)</label>
                                         <input type="text" class="form-control" id="Telefono" name="telefono"
-                                               placeholder="Telefono" ng-model="cliente.telefono" ng-pattern="/^[0-9]+$/" ng-maxlength="30" ng-minlength="11" required>
+                                               placeholder="Telefono" ng-model="cliente.telefono_hab" ng-pattern="/^[0-9]+$/" ng-maxlength="30" ng-minlength="11" required>
                                         <div ng-messages="vm.InfoForm.telefono.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.telefono.$touched">
                                             <div ng-message="required">Este campo es requerido</div>
                                             <div ng-message="pattern">Sólo se permiten números</div>
@@ -119,9 +120,9 @@
                                 <div class="col-md-4">
                                     <div class="form-group has-feedback"
                                          ng-class="{'has-error': vm.InfoForm.oficina.$invalid && (vm.InfoForm.oficina.$dirty || vm.InfoForm.$submitted)}">
-                                        <label for="Oficina">Oficina</label>
+                                        <label for="Oficina">Teléfono (Oficina)</label>
                                         <input type="text" class="form-control" id="Oficina" name="oficina"
-                                               placeholder="Oficina" ng-model="cliente.oficina" ng-pattern="/^[0-9]+$/" ng-maxlength="30" ng-minlength="11"  required>
+                                               placeholder="Oficina" ng-model="cliente.telefono_ofic" ng-pattern="/^[0-9]+$/" ng-maxlength="30" ng-minlength="11"  required>
                                         <div ng-messages="vm.InfoForm.oficina.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.oficina.$touched">
                                             <div ng-message="required">Este campo es requerido</div>
                                             <div ng-message="pattern">Sólo se permiten números</div>
@@ -384,7 +385,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback">
-                                        <label for="cirugias">¿Que cirugias se ha realizado?</label>
+                                        <label for="cirugias">¿Qué cirugias se ha realizado?</label>
                                         <input type="text" class="form-control" id="cirugias" name="cirugias"
                                                placeholder="cirugias" ng-model="cliente.evaluacion_clinica.cirugias" required>
                                     </div>
@@ -541,7 +542,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group has-feedback">
-                                        <label for="medicamentos_actual">Medicamento(s) Actualies</label>
+                                        <label for="medicamentos_actual">Medicamento(s) Actuales</label>
                                         <input type="text" class="form-control" id="medicamentos_actual"
                                                name="medicamentos_actual"
                                                placeholder="Medicamentos actuales"
@@ -579,7 +580,7 @@
                                         <label for="talqangestasia">Talangestasia</label>
                                         <input type="text" class="form-control" id="talqangestasia"
                                                name="talqangestasia"
-                                               placeholder="Talangestasia"
+                                               placeholder="Zonas donde presenta"
                                                ng-model="cliente.motivo_consulta.talqangestasia"
                                                required>
                                     </div>
@@ -590,7 +591,7 @@
                                     <div class="form-group has-feedback">
                                         <label for="manchas">Manchas</label>
                                         <input type="text" class="form-control" id="manchas" name="manchas"
-                                               placeholder="manchas"
+                                               placeholder="Zona donde presenta las manchas"
                                                ng-model="cliente.motivo_consulta.manchas" required>
                                     </div>
                                 </div>
@@ -598,7 +599,7 @@
                                     <div class="form-group has-feedback">
                                         <label for="arrugas">Arrugas</label>
                                         <input type="text" class="form-control" id="arrugas" name="arrugas"
-                                               placeholder="Arrugas"
+                                               placeholder="¿Donde presenta las arrugas?"
                                                ng-model="cliente.motivo_consulta.arrugas" required>
                                     </div>
                                 </div>
@@ -607,7 +608,7 @@
                                         <label for="arrugas_profundas">Arrugas Profundas</label>
                                         <input type="text" class="form-control" id="arrugas_profundas"
                                                name="arrugas_profundas"
-                                               placeholder="arrugas_profundas"
+                                               placeholder="¿Si? ¿Donde?"
                                                ng-model="cliente.motivo_consulta.arrugas_profundas"
                                                required>
                                     </div>

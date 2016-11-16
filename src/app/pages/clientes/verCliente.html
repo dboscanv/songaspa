@@ -30,7 +30,7 @@
                     <div class="col-md-4">
                         <div class="form-group has-feedback">
                             <label class="historia">C.I:</label>
-                            <span class="historiaFiled" editable-text="cliente._id" e-name="_id"
+                            <span class="historiaFiled" e-name="_id"
                                   onbeforesave="checkNumber($data,6,8,true)" e-required>{{cliente._id | number}}</span>
                         </div>
                         <div class="form-group has-feedback">
@@ -339,7 +339,7 @@
                         <div class="form-group has-feedback">
                             <label class="historia">¿Qué cirugías se ha realizado?:</label>
                             <span class="historiaFiled"
-                                  ng-bind-html="cliente.medicamentos"></span>
+                                  ng-bind-html="cliente.evaluacion_clinica.cirugias"></span>
                         </div>
                         <div class="form-group has-feedback">
                             <label class="historia">Complicaciones de la cirugía:</label>

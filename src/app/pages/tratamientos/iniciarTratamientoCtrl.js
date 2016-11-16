@@ -20,11 +20,10 @@
         $scope.HoyHora = new Date();
 
 
-
         //Configuracion de las fechas
         $scope.dateOptions = {
             formatYear: 'YYYY',
-            maxDate: fechaHoy.add(2,'M'),
+            maxDate: fechaHoy.add(2, 'M'),
             minDate: new Date(),
             startingDay: 1,
             showWeeks: false,
@@ -37,11 +36,11 @@
         };
 
         $scope.open = function () {
-          $scope.popup.opened = true;
+            $scope.popup.opened = true;
         };
 
         $scope.prueba = function () {
-          console.log($scope.fecha.fechita);
+            console.log($scope.fecha.fechita);
         };
 
         $scope.onSetTime = function () {
@@ -49,14 +48,19 @@
             console.log(moment());
             console.log(moment($scope.fecha.fecha_inicio));
             console.log(moment($scope.fecha.fecha_inicio).isBefore(moment(), 'hour'));
+            var fecha = moment($scope.fecha.fecha_inicio);
             // if () {
             //     console.log("Entro");
             // } else {
             //     console.log("Entro también");
             // }
 
-            $scope.fechainvalida = false;
-            $scope.newTratamiento.fecha_inicio = moment($scope.fecha.fecha_inicio).format();
+            if (fecha.hour() <= 19 && fecha.hour() >= 6) {
+                $scope.fechainvalida = false;
+                $scope.newTratamiento.fecha_inicio = moment($scope.fecha.fecha_inicio).format();
+            } else {
+                swal("FUERA DE HORARIO", "No se puede apartar cita fuera del horario comprendido de 06:00AM a 08:00PM", "info");
+            }
         };
 
         //Obtener trabajos
@@ -132,7 +136,7 @@
                 } else if (data.status == 5) {
                     swal("NO EXISTE", "La cédula ingresada no existe", "error");
                     console.log(data.salida);
-                }  else {
+                } else {
                     swal("ATENCIÓN", "No se estableció conexión con el servidor", "error");
                     console.log(data.salida);
                 }
