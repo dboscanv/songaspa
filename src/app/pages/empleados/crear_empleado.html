@@ -5,13 +5,14 @@
                 <div class="form-group" ng-class="{'has-error': formEmpleado.cedula.$invalid && (formEmpleado.cedula.$dirty || formEmpleado.$submitted)}">
                     <label for="cedulaID" class="title">Cédula:</label>
                     <input type="text" ng-model="empleado.cedula" name="cedula" class="form-control" id="cedulaID"
-                           placeholder="Cédula del empleado" ng-pattern="/^[0-9]+$/" ng-minlength="6" ng-maxlength="8"
+                           placeholder="Cédula del empleado" cedula-form ng-pattern="/^[0-9]+$/" ng-minlength="6" ng-maxlength="8"
                            required>
                     <div ng-messages="formEmpleado.cedula.$error" ng-show="formEmpleado.cedula.$touched">
                         <div ng-message="required">Este campo es requerido</div>
                         <div ng-message="pattern">Sólo se permiten números</div>
                         <div ng-message="minlength">La cédula es muy corta</div>
                         <div ng-message="maxlength">La cédula es muy larga</div>
+                        <div ng-message="validadorCedula">La cédula no es válida</div>
                     </div>
                 </div>
                 <div class="form-group" ng-class="{'has-error': formEmpleado.nombre.$invalid && (formEmpleado.nombre.$dirty || formEmpleado.$submitted)}">

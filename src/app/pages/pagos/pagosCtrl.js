@@ -49,6 +49,9 @@
             for (var x = 0; x < $scope.detalles.length; x++) {
                 $scope.detalles[x].concepto = $scope.detalles[x].id_trabajo.nombre_trabajo;
                 $scope.detalles[x].fechamodif = moment($scope.detalles[x].fecha_pago).format("DD/MM/YYYY hh:mm A");
+                if ($scope.detalles[x].monto <= 0 ) {
+                    $scope.detalles[x].monto = $scope.detalles[x].id_trabajo.precio;
+                }
             }
 
             comunFactory.generarPDF(columnas, $scope.filtradoArr.Arr, "Pagos del cliente: " + $scope.nombreEmpleado);

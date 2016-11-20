@@ -65,23 +65,26 @@
         });
 
         //Obteniendo los datos del tratamiento
-        tratamientosFactory.obtenerTratamiento($stateParams.id).get().$promise.then(function (data) {
-            if (data.status == 1) {
-                $scope.tratamiento = data.salida.tratamientos[0];
-                //Dar formato a la salida
-                DarFormato($scope.tratamiento);
-                $scope.cliente.nombre = data.salida.nombre;
-                $scope.cliente.apellido = data.salida.apellido;
-            } else if (data.status == 2) {
-                swal("ATENCIÓN", "Ha ocurrido un error", "error");
-            } else {
+        $timeout(function () {
+            tratamientosFactory.obtenerTratamiento($stateParams.id).get().$promise.then(function (data) {
+                if (data.status == 1) {
+                    $scope.tratamiento = data.salida.tratamientos[0];
+                    //Dar formato a la salida
+                    DarFormato($scope.tratamiento);
+                    $scope.cliente.nombre = data.salida.nombre;
+                    $scope.cliente.apellido = data.salida.apellido;
+                } else if (data.status == 2) {
+                    swal("ATENCIÓN", "Ha ocurrido un error", "error");
+                } else {
+                    swal("ATENCIÓN", "No se estableció conexión con el servidor", "error");
+                    console.log(data.salida);
+                }
+            }).catch(function (data) {
                 swal("ATENCIÓN", "No se estableció conexión con el servidor", "error");
                 console.log(data.salida);
-            }
-        }).catch(function (data) {
-            swal("ATENCIÓN", "No se estableció conexión con el servidor", "error");
-            console.log(data.salida);
-        });
+            });
+        },500);
+
 
         //Funcion para citar un nuevo trabajo
         $scope.citarTrabajo = function () {

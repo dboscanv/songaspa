@@ -11,8 +11,11 @@
                                          ng-class="{'has-error': vm.InfoForm.cedula.$invalid && (vm.InfoForm.cedula.$dirty || vm.InfoForm.$submitted)}">
                                         <label for="cedula">Cédula de identidad</label>
                                         <input type="text" class="form-control" id="cedula" name="cedula"
-                                               placeholder="Cédula" ng-model="cliente._id" cedula-form ng-pattern="/^[0-9]+$/" ng-minlength="6" ng-maxlength="8" required>
-                                        <div ng-messages="vm.InfoForm.cedula.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.cedula.$touched">
+                                               placeholder="Cédula" ng-model="cliente._id" cedula-form
+                                               ng-pattern="/^[0-9]+$/" ng-minlength="6" ng-maxlength="8" required>
+                                        <div ng-messages="vm.InfoForm.cedula.$error"
+                                             class="help-block error-block basic-block"
+                                             ng-show="vm.InfoForm.cedula.$touched">
                                             <div ng-message="required">Este campo es requerido</div>
                                             <div ng-message="pattern">Sólo se permiten números</div>
                                             <div ng-message="minlength">La cédula es muy corta</div>
@@ -26,8 +29,11 @@
                                          ng-class="{'has-error': vm.InfoForm.Nombre.$invalid && (vm.InfoForm.Nombre.$dirty || vm.InfoForm.$submitted)}">
                                         <label for="nombre">Nombre</label>
                                         <input type="text" class="form-control" id="Nombre" name="Nombre"
-                                               placeholder="Nombre" ng-model="cliente.nombre" ng-maxlength="40" ng-minlength="4" ng-pattern="/^([A-Za-zÑñáéíóúÁÉÍÓÚ ]+)$/" required>
-                                        <div ng-messages="vm.InfoForm.Nombre.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.Nombre.$touched">
+                                               placeholder="Nombre" ng-model="cliente.nombre" ng-maxlength="40"
+                                               ng-minlength="4" ng-pattern="/^([A-Za-zÑñáéíóúÁÉÍÓÚ ]+)$/" required>
+                                        <div ng-messages="vm.InfoForm.Nombre.$error"
+                                             class="help-block error-block basic-block"
+                                             ng-show="vm.InfoForm.Nombre.$touched">
                                             <div ng-message="required">Este campo es requerido</div>
                                             <div ng-message="pattern">Sólo se permiten letras</div>
                                             <div ng-message="minlength">El nombre es muy corto</div>
@@ -40,8 +46,11 @@
                                          ng-class="{'has-error': vm.InfoForm.apellido.$invalid && (vm.InfoForm.apellido.$dirty || vm.InfoForm.$submitted)}">
                                         <label for="apellido">Apellido</label>
                                         <input type="text" class="form-control" id="apellido" name="apellido"
-                                               placeholder="Apellido" ng-model="cliente.apellido" ng-maxlength="40" ng-minlength="4" ng-pattern="/^([A-Za-zÑñáéíóúÁÉÍÓÚ ]+)$/" required>
-                                        <div ng-messages="vm.InfoForm.apellido.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.apellido.$touched">
+                                               placeholder="Apellido" ng-model="cliente.apellido" ng-maxlength="40"
+                                               ng-minlength="4" ng-pattern="/^([A-Za-zÑñáéíóúÁÉÍÓÚ ]+)$/" required>
+                                        <div ng-messages="vm.InfoForm.apellido.$error"
+                                             class="help-block error-block basic-block"
+                                             ng-show="vm.InfoForm.apellido.$touched">
                                             <div ng-message="required">Este campo es requerido</div>
                                             <div ng-message="pattern">Sólo se permiten letras</div>
                                             <div ng-message="minlength">El apellido es muy corto</div>
@@ -56,8 +65,11 @@
                                          ng-class="{'has-error': vm.InfoForm.fechanac.$invalid && (vm.InfoForm.fechanac.$dirty || vm.InfoForm.$submitted)}">
                                         <label for="fechanac">Fecha de nacimiento</label>
                                         <input type="date" class="form-control" id="fechanac" name="fechanac"
-                                               placeholder="Fecha de nacimiento" ng-model="cliente.fechanac" min="1940-01-01" max="2006-12-31" required>
-                                        <div ng-messages="vm.InfoForm.fechanac.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.fechanac.$touched">
+                                               placeholder="Fecha de nacimiento" ng-model="cliente.fechanac"
+                                               min="1940-01-01" max="2006-12-31" required>
+                                        <div ng-messages="vm.InfoForm.fechanac.$error"
+                                             class="help-block error-block basic-block"
+                                             ng-show="vm.InfoForm.fechanac.$touched">
                                             <div ng-message="required">Este campo es requerido</div>
                                             <div ng-message="max">La fecha es muy reciente</div>
                                             <div ng-message="min">La fecha es muy antigua</div>
@@ -106,8 +118,11 @@
                                          ng-class="{'has-error': vm.InfoForm.telefono.$invalid && (vm.InfoForm.telefono.$dirty || vm.InfoForm.$submitted)}">
                                         <label for="Telefono">Teléfono (Hab)</label>
                                         <input type="text" class="form-control" id="Telefono" name="telefono"
-                                               placeholder="Telefono" ng-model="cliente.telefono_hab" ng-pattern="/^[0-9]+$/" ng-maxlength="30" ng-minlength="11" required>
-                                        <div ng-messages="vm.InfoForm.telefono.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.telefono.$touched">
+                                               placeholder="Telefono" ng-model="cliente.telefono_hab"
+                                               ng-pattern="/^[0-9]+$/" ng-maxlength="15" ng-minlength="11" required>
+                                        <div ng-messages="vm.InfoForm.telefono.$error"
+                                             class="help-block error-block basic-block"
+                                             ng-show="vm.InfoForm.telefono.$touched">
                                             <div ng-message="required">Este campo es requerido</div>
                                             <div ng-message="pattern">Sólo se permiten números</div>
                                             <div ng-message="minlength">El número es muy corto</div>
@@ -122,9 +137,12 @@
                                          ng-class="{'has-error': vm.InfoForm.oficina.$invalid && (vm.InfoForm.oficina.$dirty || vm.InfoForm.$submitted)}">
                                         <label for="Oficina">Teléfono (Oficina)</label>
                                         <input type="text" class="form-control" id="Oficina" name="oficina"
-                                               placeholder="Oficina" ng-model="cliente.telefono_ofic" ng-pattern="/^[0-9]+$/" ng-maxlength="30" ng-minlength="11"  required>
-                                        <div ng-messages="vm.InfoForm.oficina.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.oficina.$touched">
-                                            <div ng-message="required">Este campo es requerido</div>
+                                               placeholder="Oficina" ng-model="cliente.telefono_ofic"
+                                               ng-pattern="/^[0-9]+$/" ng-maxlength="15" ng-minlength="11">
+                                        <div ng-messages="vm.InfoForm.oficina.$error"
+                                             class="help-block error-block basic-block"
+                                             ng-show="vm.InfoForm.oficina.$touched">
+                                            <!--<div ng-message="required">Este campo es requerido</div>-->
                                             <div ng-message="pattern">Sólo se permiten números</div>
                                             <div ng-message="minlength">El número es muy corto</div>
                                             <div ng-message="maxlength">El número es muy largo</div>
@@ -136,8 +154,11 @@
                                          ng-class="{'has-error': vm.InfoForm.celular.$invalid && (vm.InfoForm.celular.$dirty || vm.InfoForm.$submitted)}">
                                         <label for="Celular">Celular</label>
                                         <input type="text" class="form-control" id="Celular" name="celular"
-                                               placeholder="Celular" ng-model="cliente.celular" ng-pattern="/^[0-9]+$/" ng-maxlength="30" ng-minlength="11" required>
-                                        <div ng-messages="vm.InfoForm.celular.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.celular.$touched">
+                                               placeholder="Celular" ng-model="cliente.celular" ng-pattern="/^[0-9]+$/"
+                                               ng-maxlength="15" ng-minlength="11" required>
+                                        <div ng-messages="vm.InfoForm.celular.$error"
+                                             class="help-block error-block basic-block"
+                                             ng-show="vm.InfoForm.celular.$touched">
                                             <div ng-message="required">Este campo es requerido</div>
                                             <div ng-message="pattern">Sólo se permiten números</div>
                                             <div ng-message="minlength">El número es muy corto</div>
@@ -150,8 +171,11 @@
                                          ng-class="{'has-error': vm.InfoForm.email.$invalid && (vm.InfoForm.email.$dirty || vm.InfoForm.$submitted)}">
                                         <label for="email">E-mail</label>
                                         <input type="email" class="form-control" id="email" name="email"
-                                               placeholder="E-mail" ng-model="cliente.email" ng-pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/" required>
-                                        <div ng-messages="vm.InfoForm.email.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.email.$touched">
+                                               placeholder="E-mail" ng-model="cliente.email"
+                                               ng-pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/" required>
+                                        <div ng-messages="vm.InfoForm.email.$error"
+                                             class="help-block error-block basic-block"
+                                             ng-show="vm.InfoForm.email.$touched">
                                             <div ng-message="required">Este campo es requerido</div>
                                             <div ng-message="pattern">El e-mail es invalido</div>
                                         </div>
@@ -164,8 +188,11 @@
                                          ng-class="{'has-error': vm.InfoForm.direccion.$invalid && (vm.InfoForm.direccion.$dirty || vm.InfoForm.$submitted)}">
                                         <label for="direccion">Dirección</label>
                                         <textarea class="form-control" rows="5" id="direccion" name="direccion"
-                                                  ng-model="cliente.direccion" ng-maxlength="150" ng-minlength="5" required></textarea>
-                                        <div ng-messages="vm.InfoForm.direccion.$error" class="help-block error-block basic-block" ng-show="vm.InfoForm.direccion.$touched">
+                                                  ng-model="cliente.direccion" ng-maxlength="150" ng-minlength="5"
+                                                  required></textarea>
+                                        <div ng-messages="vm.InfoForm.direccion.$error"
+                                             class="help-block error-block basic-block"
+                                             ng-show="vm.InfoForm.direccion.$touched">
                                             <div ng-message="required">Este campo es requerido</div>
                                             <div ng-message="maxlength">La dirección es muy larga</div>
                                             <div ng-message="minlength">La dirección es muy corta</div>
@@ -364,8 +391,9 @@
                                     <div class="col-md-12">
                                         <div class="form-group has-feedback">
                                             <label for="medicamentos">Medicamentos</label>
-                                        <textarea class="form-control" rows="3" id="medicamentos" name="medicamentos"
-                                                  ng-model="cliente.evaluacion_estetica.medicamentos" required></textarea>
+                                            <textarea class="form-control" rows="3" id="medicamentos"
+                                                      name="medicamentos"
+                                                      ng-model="cliente.evaluacion_estetica.medicamentos"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -387,7 +415,7 @@
                                     <div class="form-group has-feedback">
                                         <label for="cirugias">¿Qué cirugias se ha realizado?</label>
                                         <input type="text" class="form-control" id="cirugias" name="cirugias"
-                                               placeholder="cirugias" ng-model="cliente.evaluacion_clinica.cirugias" required>
+                                               placeholder="cirugias" ng-model="cliente.evaluacion_clinica.cirugias">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -395,7 +423,8 @@
                                         <label for="complicaciones">Complicaciones de la cirugía</label>
                                         <input type="text" class="form-control" id="complicaciones"
                                                name="complicaciones"
-                                               placeholder="cirugias" ng-model="cliente.evaluacion_clinica.complicaciones" required>
+                                               placeholder="cirugias"
+                                               ng-model="cliente.evaluacion_clinica.complicaciones">
                                     </div>
                                 </div>
                             </div>
@@ -528,7 +557,7 @@
                                         <input type="text" class="form-control" id="otros_aparatos"
                                                name="otros_aparatos"
                                                placeholder="otros aparatos"
-                                               ng-model="cliente.evaluacion_clinica.otros_aparatos" required>
+                                               ng-model="cliente.evaluacion_clinica.otros_aparatos">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -537,7 +566,7 @@
                                         <input type="text" class="form-control" id="productos_utilizados"
                                                name="productos_utilizados"
                                                placeholder="Productos"
-                                               ng-model="cliente.evaluacion_clinica.productos_utilizados" required>
+                                               ng-model="cliente.evaluacion_clinica.productos_utilizados">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -546,7 +575,7 @@
                                         <input type="text" class="form-control" id="medicamentos_actual"
                                                name="medicamentos_actual"
                                                placeholder="Medicamentos actuales"
-                                               ng-model="cliente.evaluacion_clinica.medicamentos_actual" required>
+                                               ng-model="cliente.evaluacion_clinica.medicamentos_actual">
                                     </div>
                                 </div>
                             </div>
@@ -554,25 +583,46 @@
 
                         </form>
                     </ba-wizard-step>
-                    <ba-wizard-step title="MOTIVO DE CONSULTA" form="vm.motivoconsultaForm">
-                        <form name="vm.motivoconsultaForm" novalidate>
+                    <ba-wizard-step title="MOTIVO DE CONSULTA" form="vm.consultaForm">
+                        <form name="vm.consultaForm" novalidate>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <div class="form-group has-feedback">
+                                    <div class="form-group has-feedback"
+                                         ng-class="{'has-error': vm.consultaForm.tipo_piel.$invalid && (vm.consultaForm.$dirty || vm.consultaForm.$submitted)}">
                                         <label for="tipo_piel">Tipo de piel</label>
                                         <input type="text" class="form-control" id="tipo_piel"
                                                name="tipo_piel"
                                                placeholder="Tipo de piel"
-                                               ng-model="cliente.motivo_consulta.tipo_piel" required>
+                                               ng-model="cliente.motivo_consulta.tipo_piel"
+                                               ng-pattern="/^([A-Za-zÑñáéíóúÁÉÍÓÚ ]+)$/" ng-minlength="4"
+                                               ng-maxlength="20" required>
+                                        <div ng-messages="vm.consultaForm.tipo_piel.$error"
+                                             class="help-block error-block basic-block"
+                                             ng-show="vm.consultaForm.tipo_piel.$touched">
+                                            <div ng-message="required">Este campo es requerido</div>
+                                            <div ng-message="pattern">Sólo se permiten letras</div>
+                                            <div ng-message="minlength">El texto es muy corto</div>
+                                            <div ng-message="maxlength">El texto es muy largo</div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group has-feedback">
+                                    <div class="form-group has-feedback"
+                                         ng-class="{'has-error': vm.consultaForm.fototipo_piel.$invalid && (vm.consultaForm.$dirty || vm.consultaForm.$submitted)}">
                                         <label for="fototipo_piel">Fototipo de piel</label>
                                         <input type="text" class="form-control" id="fototipo_piel" name="fototipo_piel"
                                                placeholder="FotoTipo de piel"
                                                ng-model="cliente.motivo_consulta.fototipo_piel"
-                                               required>
+                                               ng-pattern="/^([A-Za-zÑñáéíóúÁÉÍÓÚ ]+)$/" ng-minlength="4"
+                                               ng-maxlength="20" required>
+                                        <div ng-messages="vm.consultaForm.fototipo_piel.$error"
+                                             class="help-block error-block basic-block"
+                                             ng-show="vm.consultaForm.fototipo_piel.$touched">
+                                            <div ng-message="required">Este campo es requerido</div>
+                                            <div ng-message="pattern">Sólo se permiten letras</div>
+                                            <div ng-message="minlength">El texto es muy corto</div>
+                                            <div ng-message="maxlength">El texto es muy largo</div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -582,7 +632,15 @@
                                                name="talqangestasia"
                                                placeholder="Zonas donde presenta"
                                                ng-model="cliente.motivo_consulta.talqangestasia"
-                                               required>
+                                               ng-pattern="/^([A-Za-zÑñáéíóúÁÉÍÓÚ ]+)$/" ng-minlength="4"
+                                               ng-maxlength="20">
+                                        <div ng-messages="vm.consultaForm.talqangestasia.$error"
+                                             class="help-block error-block basic-block"
+                                             ng-show="vm.consultaForm.talqangestasia.$touched">
+                                            <div ng-message="pattern">Sólo se permiten letras</div>
+                                            <div ng-message="minlength">El texto es muy corto</div>
+                                            <div ng-message="maxlength">El texto es muy largo</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -592,7 +650,16 @@
                                         <label for="manchas">Manchas</label>
                                         <input type="text" class="form-control" id="manchas" name="manchas"
                                                placeholder="Zona donde presenta las manchas"
-                                               ng-model="cliente.motivo_consulta.manchas" required>
+                                               ng-model="cliente.motivo_consulta.manchas"
+                                               ng-pattern="/^([A-Za-zÑñáéíóúÁÉÍÓÚ ]+)$/" ng-minlength="4"
+                                               ng-maxlength="20">
+                                        <div ng-messages="vm.consultaForm.manchas.$error"
+                                             class="help-block error-block basic-block"
+                                             ng-show="vm.consultaForm.manchas.$touched">
+                                            <div ng-message="pattern">Sólo se permiten letras</div>
+                                            <div ng-message="minlength">El texto es muy corto</div>
+                                            <div ng-message="maxlength">El texto es muy largo</div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -600,7 +667,16 @@
                                         <label for="arrugas">Arrugas</label>
                                         <input type="text" class="form-control" id="arrugas" name="arrugas"
                                                placeholder="¿Donde presenta las arrugas?"
-                                               ng-model="cliente.motivo_consulta.arrugas" required>
+                                               ng-model="cliente.motivo_consulta.arrugas"
+                                               ng-pattern="/^([A-Za-zÑñáéíóúÁÉÍÓÚ ]+)$/" ng-minlength="4"
+                                               ng-maxlength="20">
+                                        <div ng-messages="vm.consultaForm.arrugas.$error"
+                                             class="help-block error-block basic-block"
+                                             ng-show="vm.consultaForm.arrugas.$touched">
+                                            <div ng-message="pattern">Sólo se permiten letras</div>
+                                            <div ng-message="minlength">El texto es muy corto</div>
+                                            <div ng-message="maxlength">El texto es muy largo</div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -610,15 +686,29 @@
                                                name="arrugas_profundas"
                                                placeholder="¿Si? ¿Donde?"
                                                ng-model="cliente.motivo_consulta.arrugas_profundas"
-                                               required>
+                                               ng-pattern="/^([A-Za-zÑñáéíóúÁÉÍÓÚ ]+)$/" ng-minlength="4"
+                                               ng-maxlength="20">
+                                        <div ng-messages="vm.consultaForm.arrugas_profundas.$error"
+                                             class="help-block error-block basic-block"
+                                             ng-show="vm.consultaForm.arrugas_profundas.$touched">
+                                            <div ng-message="pattern">Sólo se permiten letras</div>
+                                            <div ng-message="minlength">El texto es muy corto</div>
+                                            <div ng-message="maxlength">El texto es muy largo</div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group has-feedback">
                                         <label for="dx">Dx</label>
                                         <input type="text" class="form-control" id="dx" name="dx"
-                                               placeholder="dx" ng-model="cliente.motivo_consulta.dx"
-                                               required>
+                                               placeholder="Diagnostico" ng-model="cliente.motivo_consulta.dx">
+                                        <div ng-messages="vm.consultaForm.dx.$error"
+                                             class="help-block error-block basic-block"
+                                             ng-show="vm.consultaForm.dx.$touched">
+                                            <div ng-message="pattern">Sólo se permiten letras</div>
+                                            <div ng-message="minlength">El texto es muy corto</div>
+                                            <div ng-message="maxlength">El texto es muy largo</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

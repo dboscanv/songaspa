@@ -90,7 +90,7 @@
                         <div class="form-group has-feedback">
                             <label class="historia">Teléfono oficina:</label>
                             <span class="historiaFiled" editable-text="cliente.telefono_ofic" e-name="telefono_ofic"
-                                  onbeforesave="checkNumber($data,11,30)" e-required>{{cliente.telefono_ofic}}</span>
+                                  onbeforesave="checkNumber($data,11,30)">{{cliente.telefono_ofic}}</span>
                         </div>
                         <div class="form-group has-feedback">
                             <label class="historia">Celular:</label>
@@ -328,7 +328,7 @@
                         <div class="form-group has-feedback">
                             <label class="historia">Medicamentos:</label>
                             <span class="historiaFiled" editable-text="cliente.evaluacion_clinica.medicamentos" e-name="evaluacion_clinica.medicamentos"
-                                  onbeforesave="checkTexto($data,6,150,true)"
+                                  onbeforesave="checkTexto($data,6,150,false)"
                                   ng-bind-html="cliente.evaluacion_clinica.medicamentos"></span>
                         </div>
                     </div>
@@ -452,28 +452,28 @@
                         <div class="form-group has-feedback">
                             <label class="historia">Talangestasia:</label>
                             <span class="historiaFiled"  editable-text="cliente.motivo_consulta.talqangestasia" e-name="motivo_consulta.talqangestasia"
-                                  onbeforesave="checkTexto($data,5,150,true)"
-                                  ng-bind-html="cliente.motivo_consulta.talqangestasia" e-required></span>
+                                  onbeforesave="checkTexto($data,5,150,false)"
+                                  ng-bind-html="cliente.motivo_consulta.talqangestasia"></span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group has-feedback">
                             <label class="historia">Manchas:</label>
                             <span class="historiaFiled"  editable-text="cliente.motivo_consulta.manchas" e-name="motivo_consulta.manchas"
-                                  onbeforesave="checkTexto($data,5,150,true)"
-                                  ng-bind-html="cliente.motivo_consulta.manchas" e-required></span>
+                                  onbeforesave="checkTexto($data,5,150,false)"
+                                  ng-bind-html="cliente.motivo_consulta.manchas"></span>
                         </div>
                         <div class="form-group has-feedback">
                             <label class="historia">Arrugas:</label>
                             <span class="historiaFiled"  editable-text="cliente.motivo_consulta.arrugas" e-name="motivo_consulta.arrugas"
-                                  onbeforesave="checkTexto($data,5,150,true)"
-                                  ng-bind-html="cliente.motivo_consulta.arrugas" e-required></span>
+                                  onbeforesave="checkTexto($data,5,150,false)"
+                                  ng-bind-html="cliente.motivo_consulta.arrugas"></span>
                         </div>
                         <div class="form-group has-feedback">
                             <label class="historia">Arrugas Profundas:</label>
                             <span class="historiaFiled"  editable-text="cliente.motivo_consulta.arrugas_profundas" e-name="motivo_consulta.arrugas_profundas"
-                                  onbeforesave="checkTexto($data,5,150,true)"
-                                  ng-bind-html="cliente.motivo_consulta.arrugas_profundas" e-required></span>
+                                  onbeforesave="checkTexto($data,5,150,false)"
+                                  ng-bind-html="cliente.motivo_consulta.arrugas_profundas"></span>
                         </div>
                     </div>
                 </div>

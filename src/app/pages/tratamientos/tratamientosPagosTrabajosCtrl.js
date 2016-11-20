@@ -22,6 +22,7 @@
             tratamientosFactory.guardarPago($scope.idCliente, $scope.idTratamiento).save($scope.pago).$promise.then(function (data) {
                 if (data.status == 1) {
                     swal("ÉXITO", "Pago registrado con éxito", "success");
+                    $state.reload();
                 } else if (data.status == 2) {
                     swal("ATENCIÓN", "Ha ocurrido un error", "error");
                 } else if (data.status == 6) {
